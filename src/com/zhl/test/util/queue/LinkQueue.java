@@ -129,4 +129,14 @@ public class LinkQueue<T> {
 			return sb.delete(len - 1, len).append("]").toString();
 		}
 	}
+	
+	public static void main(String[] args) {
+		LinkQueue<Integer> lq = new LinkQueue<Integer>();
+		lq.add(1);
+		lq.add(4);
+		lq.add(3);
+		lq.add(6);
+		lq.add(9);
+		System.out.println(lq.toString());
+	}
 }

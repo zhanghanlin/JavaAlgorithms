@@ -123,4 +123,18 @@ public class SequenceQueue<T> {
 		int len = sb.length();
 		return sb.delete(len - 1, len).append("]").toString();
 	}
+	
+	public static void main(String[] args) {
+		SequenceQueue<Integer> sq = new SequenceQueue<Integer>(10,20);
+		System.out.println(sq.toString() + ">>>" + sq.length());
+		sq.add(1);
+		sq.add(5);
+		sq.add(3);
+		sq.add(8);
+		sq.add(9);
+		sq.add(2);
+		System.out.println(sq.toString() + ">>>" + sq.length());
+		System.out.println(sq.remove());
+		System.out.println(sq.toString() + ">>>" + sq.length());
+	}
 }

@@ -145,4 +145,15 @@ public class LoopQueue<T> {
 			return sb.delete(len - 1, len).append("]").toString();
 		}
 	}
+	
+	public static void main(String[] args) {
+		LoopQueue<Integer> lq = new LoopQueue<Integer>(10);
+		lq.add(1);
+		lq.add(3);
+		lq.add(4);
+		lq.add(5);
+		lq.add(7);
+		lq.add(9);
+		System.out.println(lq.toString());
+	}
 }
