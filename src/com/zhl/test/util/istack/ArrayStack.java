@@ -39,6 +39,7 @@ public class ArrayStack<T> implements IStack<T> {
 	@Override
 	public void push(T t) {
 		// TODO Auto-generated method stub
+		//判断是否需要进行数组扩容
 		if (this.size < this.capacity) {
 			this.array[top] = t;
 			this.top++;
@@ -49,6 +50,9 @@ public class ArrayStack<T> implements IStack<T> {
 		}
 	}
 	
+	/**
+	 * 数组扩容
+	 */
 	public void enlarge() {
 		this.capacity = this.capacity + this.DEFAULT_SIZE;
 		Object[] newArray = new Object[this.capacity];
@@ -73,6 +77,7 @@ public class ArrayStack<T> implements IStack<T> {
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
+		//将数组中的数据置为null, 方便GC进行回收
 		Arrays.fill(array, null);
 		this.top = 0;
 		this.size = 0;
