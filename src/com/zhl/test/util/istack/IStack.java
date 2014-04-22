@@ -24,7 +24,7 @@ public interface IStack<T> {
 	 * 判断栈是否为空
 	 * @return
 	 */
-	public boolean isEmpty();	//is null
+	public boolean empty();	//is null
 	
 	/**
 	 * 情况栈

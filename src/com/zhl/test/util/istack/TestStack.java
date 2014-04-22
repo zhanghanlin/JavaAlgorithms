@@ -9,7 +9,7 @@ public class TestStack {
 		stack.push(6);
 		stack.push(2);
 		stack.push(9);
-		System.out.println(stack.isEmpty());
+		System.out.println(stack.empty());
 		System.out.println(stack.peek());
 		System.out.println(stack.size());
 		stack.clear();
