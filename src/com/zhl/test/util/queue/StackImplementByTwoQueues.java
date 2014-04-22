@@ -76,5 +76,6 @@ public class StackImplementByTwoQueues<T> {
         System.out.println(tmp);//5  
         tmp=stack.pop();  
         System.out.println(tmp);//1	
+        stack.push(13);
 	}
 }
