@@ -76,7 +76,7 @@ public class LoopQueue<T> {
 	 */
 	public void add(T t){
 		if (rear == front && elementDate[front] != null) {
-			throw new IndexOutOfBoundsException("队列已满");
+			throw new IndexOutOfBoundsException("队列已满 - 上溢");
 		}
 		elementDate[rear++] = t;
 		rear = rear == capacity ? 0 : rear;
@@ -89,7 +89,7 @@ public class LoopQueue<T> {
 	@SuppressWarnings("unchecked")
 	public T remove(){
 		if (empty()) {
-			throw new IndexOutOfBoundsException("空队列");
+			throw new IndexOutOfBoundsException("空队列 - 下溢");
 		}
 		//保留队列的rear端的元素的值
 		T oldValue = (T)elementDate[front];
@@ -147,7 +147,7 @@ public class LoopQueue<T> {
 	}
 	
 	public static void main(String[] args) {
-		LoopQueue<Integer> lq = new LoopQueue<Integer>(10);
+		LoopQueue<Integer> lq = new LoopQueue<Integer>();
 		lq.add(1);
 		lq.add(3);
 		lq.add(4);

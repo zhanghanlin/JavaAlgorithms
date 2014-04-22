@@ -70,7 +70,7 @@ public class SequenceQueue<T> {
 	 */
 	public void add(T t){
 		if (rear > capacity - 1) {
-			throw new IndexOutOfBoundsException("队列已满");
+			throw new IndexOutOfBoundsException("队列已满 - 上溢");
 		}
 		elementDate[rear++] = t;
 	}
@@ -82,7 +82,7 @@ public class SequenceQueue<T> {
 	@SuppressWarnings("unchecked")
 	public T remove(){
 		if (empty()) {
-			throw new IndexOutOfBoundsException("空队列");
+			throw new IndexOutOfBoundsException("空队列 - 下溢");
 		}
 		//保留队列的rear端的元素的值
 		T oldValue = (T)elementDate[front];
@@ -125,7 +125,7 @@ public class SequenceQueue<T> {
 	}
 	
 	public static void main(String[] args) {
-		SequenceQueue<Integer> sq = new SequenceQueue<Integer>(10,20);
+		SequenceQueue<Integer> sq = new SequenceQueue<Integer>(10);
 		System.out.println(sq.toString() + ">>>" + sq.length());
 		sq.add(1);
 		sq.add(5);
