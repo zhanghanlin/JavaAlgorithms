@@ -5,6 +5,8 @@ public class TestQueue {
 		testSequence();
 		System.out.println("");
 		testLoop();
+		System.out.println("");
+		testLink();
 	}
 	
 	public static void testLoop(){
@@ -30,5 +32,14 @@ public class TestQueue {
 		System.out.println(sq.toString() + ">>>" + sq.length());
 		System.out.println(sq.remove());
 		System.out.println(sq.toString() + ">>>" + sq.length());
+	}
+	
+	public static void testLink(){
+		LinkQueue<Integer> lq = new LinkQueue<Integer>();
+		lq.add(1);
+		lq.add(4);
+		lq.add(3);
+		lq.add(6);
+		System.out.println(lq.toString());
 	}
 }
