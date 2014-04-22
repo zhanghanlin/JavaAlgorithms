@@ -40,6 +40,7 @@ public class TestQueue {
 		lq.add(4);
 		lq.add(3);
 		lq.add(6);
+		lq.add(9);
 		System.out.println(lq.toString());
 	}
 }
