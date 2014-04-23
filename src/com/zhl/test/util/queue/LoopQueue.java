@@ -32,7 +32,6 @@ public class LoopQueue<T> {
 	 */
 	public LoopQueue(T t){
 		this();
-		capacity = DEFAULT_SIZE;
 		elementDate[0] = t;
 		rear++;
 	}
@@ -147,7 +146,7 @@ public class LoopQueue<T> {
 	}
 	
 	public static void main(String[] args) {
-		LoopQueue<Integer> lq = new LoopQueue<Integer>();
+		LoopQueue<Integer> lq = new LoopQueue<Integer>(13);
 		lq.add(1);
 		lq.add(3);
 		lq.add(4);
