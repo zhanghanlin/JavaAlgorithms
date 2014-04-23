@@ -7,10 +7,9 @@ package com.zhl.test.util;
  */
 public class FindMaxCrossingSubarray {	
 	public static void main(String[] args) {
-		FindMaxCrossingSubarray fSubarray = new FindMaxCrossingSubarray();
 		int[] src = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
-		System.out.println(fSubarray.maxSubSum(src, src.length - 1));
-		SubArray subArray = fSubarray.findMaximumSubArray(src, 0, src.length - 1);
+		System.out.println(maxSubSum(src, src.length - 1));
+		SubArray subArray = findMaximumSubArray(src, 0, src.length - 1);
 		System.out.println(subArray.toString());
 	}
 	
@@ -20,7 +19,7 @@ public class FindMaxCrossingSubarray {
 	 * @param low	数组起始坐标
 	 * @param high	数组结束坐标
 	 */
-	public SubArray findMaximumSubArray(int[] src ,int low ,int high){
+	public static SubArray findMaximumSubArray(int[] src ,int low ,int high){
 		if (low == high) {
 			return new SubArray(low, high, src[low]);
 		}
@@ -45,7 +44,7 @@ public class FindMaxCrossingSubarray {
 	 * @param high	结束坐标
 	 * @return
 	 */
-	public SubArray findMaxCrossingSubarray(int[] src,int low,int mid,int high){
+	public static SubArray findMaxCrossingSubarray(int[] src,int low,int mid,int high){
 		//sum:目前最大和	leftSum:左侧最大和	rightSum:右侧最大和
 		int sum = 0 , leftSum = 0 , rightSum = 0;
 		//左侧最大值的索引,默认起始坐标	右侧最大值索引,默认中值加一
@@ -68,7 +67,7 @@ public class FindMaxCrossingSubarray {
 		return new SubArray(leftIndex, rightIndex, rightSum + leftSum);
 	}
 	
-	class SubArray{
+	static class SubArray{
 		int low;	//开始坐标
 		int high;	//结束坐标
 		int sum;	//src[low]+src[low+1]... + src[high]
@@ -88,7 +87,7 @@ public class FindMaxCrossingSubarray {
 	 * @param n
 	 * @return
 	 */
-	public int maxSubSum(int[] src,int n){
+	public static int maxSubSum(int[] src,int n){
 		int maxSum = 0;
 		for (int i = 0; i < src.length; i++) {
 			int thisSum = 0;
