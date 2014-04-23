@@ -9,6 +9,7 @@ public class FindMaxCrossingSubarray {
 	public static void main(String[] args) {
 		FindMaxCrossingSubarray fSubarray = new FindMaxCrossingSubarray();
 		int[] src = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
+		System.out.println(fSubarray.maxSubSum(src, src.length - 1));
 		SubArray subArray = fSubarray.findMaximumSubArray(src, 0, src.length - 1);
 		System.out.println(subArray.toString());
 	}
@@ -79,5 +80,25 @@ public class FindMaxCrossingSubarray {
 		public String toString(){
 			return low + ">" + high + ":" + sum;
 		}
+	}
+	
+	/**
+	 * 暴力解决
+	 * @param src
+	 * @param n
+	 * @return
+	 */
+	public int maxSubSum(int[] src,int n){
+		int maxSum = 0;
+		for (int i = 0; i < src.length; i++) {
+			int thisSum = 0;
+			for (int j = i; j < n; j++) {
+				thisSum += src[j];
+				if (thisSum > maxSum) {
+					maxSum = thisSum;
+				}
+			}
+		}
+		return maxSum;
 	}
 }
