@@ -1,8 +1,8 @@
-package com.zhl.test.util;
+package com.zhl.test.util.sort;
 
 
 
-public class TestSort {
+public class Sort {
 
 	public static void main(String[] args) {
 		int[] insertionSrc = {4,8,3,45,23,78,21,45,6};
@@ -89,7 +89,7 @@ public class TestSort {
 	}
 	
 	/**
-	 * 归并排序 - 归并
+	 * 归并排序 - 归并2
 	 * @param src	排序数组
 	 * @param s	L集合开始索引
 	 * @param m	R集合开始索引
@@ -128,9 +128,9 @@ public class TestSort {
 	
 	/**
 	 * 归并排序 - 排序
-	 * @param src
-	 * @param s
-	 * @param t
+	 * @param src	数组
+	 * @param s	数组开始索引
+	 * @param t	数组长度-1
 	 */
 	public static void mergeSort(int[] src,int s,int t) {
 		if (s < t) {

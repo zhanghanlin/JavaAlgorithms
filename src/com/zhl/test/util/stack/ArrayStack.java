@@ -1,4 +1,4 @@
-package com.zhl.test.util.istack;
+package com.zhl.test.util.stack;
 
 import java.util.Arrays;
 
