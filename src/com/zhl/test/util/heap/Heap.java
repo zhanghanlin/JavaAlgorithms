@@ -1,24 +1,26 @@
 package com.zhl.test.util.heap;
 
+import com.zhl.test.util.Utils;
+
 /**
  * 堆
  * @author zhanghanlin
  *
  */
 public class Heap {	
-	public static final int HEAD_MAX = 0;
-	public static final int HEAD_MIN = 1;
-	private final int DEFAULT_CAPATITY_SIZE = 16;
+	public static final int HEAD_MAX = 0;	//最大堆标识
+	public static final int HEAD_MIN = 1;	//最小堆标识
+	private final int DEFAULT_CAPATITY_SIZE = 16;	//默认堆大小为16
 	
-	private int[] src;
-	private int size = 0;
+	private Integer[] src;	//堆
+	private int size = 0;	//堆中的元素个数
 	
-	public Heap() {		
-		src = new int[DEFAULT_CAPATITY_SIZE];
+	public Heap() {
+		src = new Integer[DEFAULT_CAPATITY_SIZE];
 	}
 	
 	public Heap(int size){
-		src = new int[size];
+		src = new Integer[size];
 	}
 	
 	/**
@@ -46,10 +48,10 @@ public class Heap {
 	 * 堆排序
 	 * @param type
 	 */
-	public void headSort(int type){
+	public void heapSort(int type){
 		buildHeap(type);
 		for (int i = size - 1; i >= 0; i--) {
-			swap(0, i);
+			Utils.swap(src,0, i);
 			heapify(0, i - 1,type);
 		}
 	}
@@ -72,8 +74,8 @@ public class Heap {
 	 * @param type	MAX,MIN
 	 */
 	public void heapify(int i,int heapSize,int type){
-		int l = left(i);	//得到左孩子下标
-		int r = right(i);	//得到右孩子下标
+		int l = Utils.left(i);	//得到左孩子下标
+		int r = Utils.right(i);	//得到右孩子下标
 		int largest = i;
 		if (type == HEAD_MAX) {
 			//如果左孩子val比src[i]的val大,则将其下标存储在largest中
@@ -96,47 +98,9 @@ public class Heap {
 		}
 		//如果下标i对应的元素不为最大,则不符合最大堆性质,交换i和largest的元素
 		if (largest != i) {
-			swap(i, largest);
+			Utils.swap(src,i, largest);
 			heapify(largest, heapSize,type);
 		}
-	}
-	
-	/**
-	 * 交换i和largest的元素
-	 * @param i
-	 * @param largest
-	 */
-	public void swap(int i,int largest){
-		int temp = src[largest];
-		src[largest] = src[i];
-		src[i] = temp;
-	}
-	
-	/**
-	 * 得到父节点下标
-	 * @param i
-	 * @return
-	 */
-	public int parent(int i){
-		return i/2;
-	}
-	
-	/**
-	 * 得到左孩子下标
-	 * @param i
-	 * @return
-	 */
-	public int left(int i){
-		return 2 * i;
-	}
-	
-	/**
-	 * 得到右孩子下标
-	 * @param i
-	 * @return
-	 */
-	public int right(int i){
-		return 2 * i + 1;
 	}
 	
 	public static void main(String[] args) {
@@ -148,11 +112,11 @@ public class Heap {
 		heap.print("原始堆");
 		heap.buildHeap(HEAD_MAX);
 		heap.print("最大堆");
-		heap.headSort(HEAD_MAX);
+		heap.heapSort(HEAD_MAX);
 		heap.print("最大堆排序");
 		heap.buildHeap(HEAD_MIN);
 		heap.print("最小堆");
-		heap.headSort(HEAD_MIN);
+		heap.heapSort(HEAD_MIN);
 		heap.print("最小堆排序");
 	}
 }
