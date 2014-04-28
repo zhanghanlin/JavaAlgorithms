@@ -5,7 +5,7 @@ package com.zhl.test.util.heap;
  * @author zhanghanlin
  *
  */
-public class MaxPriorityHeap{
+public class MaxPriorityQuene {
 	
 	private final int DEFAULT_CAPACITY_SIZE = 16;
 	private int capacity = DEFAULT_CAPACITY_SIZE;
@@ -21,12 +21,12 @@ public class MaxPriorityHeap{
      * 2 A[heap-size[A]] ← -∞ 
      * 3 HEAP-INCREASE-KEY(A, heap-size[A], key)
      * 时间复杂度：O(lg n)
-     * @param key 待插入元素 
+     * @param value 待插入元素 
      */ 
-	public void insert(int key) throws Exception{
-		quene[heapSize] = key;
+	public void insert(int value) {
+		quene[heapSize] = value;
 		heapSize++;
-		increaseKey(heapSize - 1,key);
+		increaseKey(heapSize - 1,value);
 	}
 	
 	/**
@@ -51,23 +51,22 @@ public class MaxPriorityHeap{
      * 时间复杂度：O(lg n), 
      * @return 
      */
-	public int extractMax() throws Exception{
+	public int extractMax(){
 		if (heapSize == 0) {
-			throw new Exception("IS NULL");
+			throw new NullPointerException("IS NULL");
 		}
 		int max = quene[0];
 		quene[0] = quene[heapSize - 1];
 		heapSize--;
-		maxHeapify(0, heapSize);
+		maxHeapify(0);
 		return max;
 	}
 	
 	/**
 	 * 最大堆
 	 * @param i	下标
-	 * @param heapSize	堆长度
 	 */
-	public void maxHeapify(int i,int heapSize){
+	public void maxHeapify(int i){
 		int l = left(i);	//得到左孩子下标
 		int r = right(i);	//得到右孩子下标
 		int largest = i;
@@ -82,7 +81,7 @@ public class MaxPriorityHeap{
 		//如果下标i对应的元素不为最大,则不符合最大堆性质,交换i和largest的元素
 		if (largest != i) {
 			swap(i, largest);
-			maxHeapify(largest, heapSize);
+			maxHeapify(largest);
 		}
 	}
 	
@@ -99,14 +98,14 @@ public class MaxPriorityHeap{
      * 6 i ← PARENT(i) 
      * 时间复杂度：O(lg n) 
      * @param i 索引位 
-     * @param key 新值 
+     * @param value 新值 
      */ 
-	public void increaseKey(int i ,int key) throws Exception{
-		if (key < quene[i]) {
-			throw new Exception("new k < old k");
+	public void increaseKey(int i ,int value){
+		if (value < quene[i]) {
+			System.err.println("newKey < oldKey");
 		}
-		quene[i] = key;
-		while (i > 0 && quene[parent(i)] < key) {
+		quene[i] = value;
+		while (i > 0 && quene[parent(i)] < value) {
 			swap(i, parent(i));
 			i = parent(i);
 		}
@@ -152,27 +151,21 @@ public class MaxPriorityHeap{
 	
 	public static void main(String[] args) {
 		int[] s = {49,38,52,44,81,97,76,13,27,65};
-		MaxPriorityHeap mph = new MaxPriorityHeap();
-		try {
-			for (int i = 0; i < s.length; i++) {
-				mph.insert(s[i]);
-			}
-System.out.println(mph.maximum());
-			
-			System.out.println(mph.extractMax());
-			System.out.println(mph.maximum());
-			System.out.println(mph.maximum());
-			System.out.println(mph.extractMax());
-			System.out.println(mph.extractMax());
-			
-			System.out.println("");
-			for (int i = 0; i < mph.heapSize; i++) {
-				System.out.println(mph.quene[i]);
-			}
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		MaxPriorityQuene mph = new MaxPriorityQuene();
+
+		for (int i = 0; i < s.length; i++) {
+			mph.insert(s[i]);
 		}
+		System.out.println(mph.maximum());			
+		System.out.println(mph.extractMax());
+		System.out.println(mph.maximum());
+		System.out.println(mph.maximum());
+		System.out.println(mph.extractMax());
+		System.out.println(mph.extractMax());
+		
+		System.out.println("");
+		for (int i = 0; i < mph.heapSize; i++) {
+			System.out.println(mph.quene[i]);
+		}	
 	}
 }
