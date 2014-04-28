@@ -8,17 +8,26 @@ package com.zhl.test.util.heap;
 public class Heap {	
 	public static final int HEAD_MAX = 0;
 	public static final int HEAD_MIN = 1;
+	private final int DEFAULT_CAPATITY_SIZE = 16;
 	
-	public int[] src;
-	public int size;
+	private int[] src;
+	private int size = 0;
 	
-	public Heap() {
-		super();
+	public Heap() {		
+		src = new int[DEFAULT_CAPATITY_SIZE];
 	}
 	
-	public Heap(int[] src){
-		this.src = src;
-		this.size = src.length;
+	public Heap(int size){
+		src = new int[size];
+	}
+	
+	/**
+	 * insert value
+	 * @param value
+	 */
+	public void insert(int value){
+		src[size] = value;
+		size++;
 	}
 	
 	/**
@@ -132,7 +141,10 @@ public class Heap {
 	
 	public static void main(String[] args) {
 		int[] src = {49,38,52,44,81,97,76,13,27,65};
-		Heap heap = new Heap(src);
+		Heap heap = new Heap(10);
+		for (int i = 0; i < src.length; i++) {
+			heap.insert(src[i]);
+		}
 		heap.print("原始堆");
 		heap.buildHeap(HEAD_MAX);
 		heap.print("最大堆");
