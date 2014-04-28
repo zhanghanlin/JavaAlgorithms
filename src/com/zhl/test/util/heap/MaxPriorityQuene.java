@@ -52,14 +52,7 @@ public class MaxPriorityQuene {
      * @return 
      */
 	public int extractMax(){
-		if (heapSize == 0) {
-			throw new NullPointerException("IS NULL");
-		}
-		int max = quene[0];
-		quene[0] = quene[heapSize - 1];
-		heapSize--;
-		maxHeapify(0);
-		return max;
+		return delete(0);
 	}
 	
 	/**
@@ -114,6 +107,22 @@ public class MaxPriorityQuene {
 	}
 	
 	/**
+	 * 删除i节点
+	 * @param i
+	 * @return
+	 */
+	public int delete(int i){
+		if (heapSize - 1 < i) {
+			throw new NullPointerException("IS NULL");
+		}
+		int val = quene[i];
+		quene[i] = quene[heapSize - 1];
+		heapSize--;
+		maxHeapify(i);
+		return val;
+	}
+	
+	/**
 	 * 交换元素
 	 * @param i
 	 * @param largest
@@ -163,8 +172,8 @@ public class MaxPriorityQuene {
 //		System.out.println(mph.maximum());
 //		System.out.println(mph.maximum());
 //		System.out.println(mph.extractMax());
-//		System.out.println(mph.extractMax());
-		
+		System.out.println(mph.extractMax());
+//		System.out.println(mph.delete(3));
 		System.out.println("");
 		for (int i = 0; i < mph.heapSize; i++) {
 			System.out.println(mph.quene[i]);
