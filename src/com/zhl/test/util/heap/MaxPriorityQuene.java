@@ -10,7 +10,7 @@ public class MaxPriorityQuene {
 	private final int DEFAULT_CAPACITY_SIZE = 16;
 	private int capacity = DEFAULT_CAPACITY_SIZE;
 	private int[] quene = new int[capacity];
-	private int heapSize = 0;
+	public int heapSize = 0;
 	
 	/** 
      * 往优先级队列出，插入一个元素 
@@ -166,6 +166,6 @@ public class MaxPriorityQuene {
 		System.out.println("");
 		for (int i = 0; i < mph.heapSize; i++) {
 			System.out.println(mph.quene[i]);
-		}	
+		}
 	}
 }
