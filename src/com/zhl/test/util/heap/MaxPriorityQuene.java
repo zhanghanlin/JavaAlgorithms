@@ -1,5 +1,7 @@
 package com.zhl.test.util.heap;
 
+import com.zhl.test.util.Utils;
+
 /**
  * 最大优先队列
  * @author zhanghanlin
@@ -9,7 +11,7 @@ public class MaxPriorityQuene {
 	
 	private final int DEFAULT_CAPACITY_SIZE = 16;
 	private int capacity = DEFAULT_CAPACITY_SIZE;
-	private int[] quene = new int[capacity];
+	private Integer[] quene = new Integer[capacity];
 	public int heapSize = 0;
 	
 	/** 
@@ -60,8 +62,8 @@ public class MaxPriorityQuene {
 	 * @param i	下标
 	 */
 	public void maxHeapify(int i){
-		int l = left(i);	//得到左孩子下标
-		int r = right(i);	//得到右孩子下标
+		int l = Utils.left(i);	//得到左孩子下标
+		int r = Utils.right(i);	//得到右孩子下标
 		int largest = i;
 		//如果左孩子val比src[i]的val大,则将其下标存储在largest中
 		if (l <= heapSize && quene[l] > quene[i]) {
@@ -73,7 +75,7 @@ public class MaxPriorityQuene {
 		}
 		//如果下标i对应的元素不为最大,则不符合最大堆性质,交换i和largest的元素
 		if (largest != i) {
-			swap(i, largest);
+			Utils.swap(quene,i, largest);
 			maxHeapify(largest);
 		}
 	}
@@ -98,10 +100,10 @@ public class MaxPriorityQuene {
 			System.err.println("newKey < oldKey");
 		}
 //		quene[i] = value;
-		while (i > 0 && quene[parent(i)] < value) {
+		while (i > 0 && quene[Utils.parent(i)] < value) {
 //			swap(i, parent(i));
-			quene[i] = quene[parent(i)];
-			i = parent(i);
+			quene[i] = quene[Utils.parent(i)];
+			i = Utils.parent(i);
 		}
 		quene[i] = value;
 	}
@@ -122,61 +124,28 @@ public class MaxPriorityQuene {
 		return val;
 	}
 	
-	/**
-	 * 交换元素
-	 * @param i
-	 * @param largest
-	 */
-	public void swap(int i, int largest) {
-		// TODO Auto-generated method stub
-		int temp = quene[i];
-		quene[i] = quene[largest];
-		quene[largest] = temp;
-	}
-	
-	/**
-	 * 得到父节点下标
-	 * @param i
-	 * @return
-	 */
-	public int parent(int i){
-		return i/2;
-	}
-	/**
-	 * 得到左孩子下标
-	 * @param i
-	 * @return
-	 */
-	public int left(int i){
-		return 2 * i;
-	}
-	
-	/**
-	 * 得到右孩子下标
-	 * @param i
-	 * @return
-	 */
-	public int right(int i){
-		return 2 * i + 1;
-	}
-	
 	public static void main(String[] args) {
 		int[] s = {49,38,52,44,81,97,76,13,27,65};
 		MaxPriorityQuene mph = new MaxPriorityQuene();
-
 		for (int i = 0; i < s.length; i++) {
 			mph.insert(s[i]);
 		}
-//		System.out.println(mph.maximum());			
-//		System.out.println(mph.extractMax());
-//		System.out.println(mph.maximum());
-//		System.out.println(mph.maximum());
-//		System.out.println(mph.extractMax());
-		System.out.println(mph.extractMax());
-//		System.out.println(mph.delete(3));
-		System.out.println("");
+		System.out.print("插入完毕：");
 		for (int i = 0; i < mph.heapSize; i++) {
-			System.out.println(mph.quene[i]);
+			System.out.print(mph.quene[i] + " ");
+		}
+		System.out.println("");
+		System.out.println("最大关键字（保留）" + mph.maximum());			
+		System.out.println("最大关键字（删除）" + mph.extractMax());
+		System.out.print("删除后的堆：");
+		for (int i = 0; i < mph.heapSize; i++) {
+			System.out.print(mph.quene[i] + " ");
+		}
+		System.out.println("");
+		System.out.println("删除第四个节点" + mph.delete(3));
+		System.out.print("删除后的堆：");
+		for (int i = 0; i < mph.heapSize; i++) {
+			System.out.print(mph.quene[i] + " ");
 		}
 	}
 }
