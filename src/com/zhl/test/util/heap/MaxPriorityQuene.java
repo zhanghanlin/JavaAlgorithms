@@ -104,11 +104,13 @@ public class MaxPriorityQuene {
 		if (value < quene[i]) {
 			System.err.println("newKey < oldKey");
 		}
-		quene[i] = value;
+//		quene[i] = value;
 		while (i > 0 && quene[parent(i)] < value) {
-			swap(i, parent(i));
+//			swap(i, parent(i));
+			quene[i] = quene[parent(i)];
 			i = parent(i);
 		}
+		quene[i] = value;
 	}
 	
 	/**
@@ -156,12 +158,12 @@ public class MaxPriorityQuene {
 		for (int i = 0; i < s.length; i++) {
 			mph.insert(s[i]);
 		}
-		System.out.println(mph.maximum());			
-		System.out.println(mph.extractMax());
-		System.out.println(mph.maximum());
-		System.out.println(mph.maximum());
-		System.out.println(mph.extractMax());
-		System.out.println(mph.extractMax());
+//		System.out.println(mph.maximum());			
+//		System.out.println(mph.extractMax());
+//		System.out.println(mph.maximum());
+//		System.out.println(mph.maximum());
+//		System.out.println(mph.extractMax());
+//		System.out.println(mph.extractMax());
 		
 		System.out.println("");
 		for (int i = 0; i < mph.heapSize; i++) {
