@@ -88,4 +88,14 @@ public class Utils {
 	public static boolean isBlank(Object o){
 		return o == null || o.toString().equals("");
 	}
+	
+	/**
+	 * 得到一个介于a和b之间的随机数
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	public static int random(int a ,int b){
+		return a + new Double(Math.random() * (b - a)).intValue();
+	}
 }
