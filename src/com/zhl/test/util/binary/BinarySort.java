@@ -2,6 +2,11 @@ package com.zhl.test.util.binary;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 二叉查找树 - 根据前/后序和中序得到后/前序
+ * @author zhanghanlin
+ *
+ */
 public class BinarySort {
 	static List<TNode> list = new ArrayList<TNode>();	//存储二叉树集合
 	public class TNode{
