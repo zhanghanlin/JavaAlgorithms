@@ -45,4 +45,27 @@ public class Utils {
 	public static int right(int i){
 		return 2 * i + 1;
 	}
+	
+	/**
+	 * 打印输出
+	 * @param o
+	 */
+	public static void print(Object[] o) {
+		if (o != null) {
+			for (int i = 0; i < o.length; i++) {
+				System.out.print(o[i].toString() + " ");
+			}
+		}
+		System.out.println("");
+	}
+	
+	/**
+	 * 打印输出
+	 * @param o
+	 * @param info 在输出结果前增加消息
+	 */
+	public static void print(Object[] o,String info){
+		System.out.print(info + " : ");
+		print(o);
+	}
 }
