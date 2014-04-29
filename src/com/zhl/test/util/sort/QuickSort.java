@@ -49,9 +49,6 @@ public class QuickSort {
 		int p = 0;	//起始索引,默认第一个0
 		int r = src.length - 1;	//最末索引,数组长度减一
 		sort(p, r);	//开始排序
-		System.out.print("排序后：");
-		for (int i = 0; i < src.length; i++) {
-			System.out.print(src[i] + " ");
-		}
+		Utils.print(src,"排序后");
 	}
 }
