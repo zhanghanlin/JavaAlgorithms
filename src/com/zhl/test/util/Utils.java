@@ -53,7 +53,9 @@ public class Utils {
 	public static void print(Object[] o) {
 		if (o != null) {
 			for (int i = 0; i < o.length; i++) {
-				System.out.print(o[i].toString() + " ");
+				if (isNotBlank(o[i])) {
+					System.out.print(o[i].toString() + " ");
+				}
 			}
 		}
 		System.out.println("");
@@ -67,5 +69,23 @@ public class Utils {
 	public static void print(Object[] o,String info){
 		System.out.print(info + " : ");
 		print(o);
+	}
+	
+	/**
+	 * 判断对象是否为空
+	 * @param o
+	 * @return
+	 */
+	public static boolean isNotBlank(Object o){
+		return o != null && !o.toString().equals("");
+	}
+	
+	/**
+	 * 判断对象是否为空
+	 * @param o
+	 * @return
+	 */
+	public static boolean isBlank(Object o){
+		return o == null || o.toString().equals("");
 	}
 }
