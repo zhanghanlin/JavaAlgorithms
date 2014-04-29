@@ -1,5 +1,8 @@
 package com.zhl.test.util;
 
+import java.util.Date;
+import java.util.Random;
+
 /**
  * 公共类
  * @author zhanghanlin
@@ -95,7 +98,30 @@ public class Utils {
 	 * @param b
 	 * @return
 	 */
-	public static int random(int a ,int b){
+	public static Integer random(int a ,int b){
 		return a + new Double(Math.random() * (b - a)).intValue();
+	}
+	
+	/**
+	 * 得到一个长度为N介于a和b之间的随机数组
+	 * @param a
+	 * @param b
+	 * @param n
+	 * @return
+	 */
+	@SuppressWarnings("deprecation")
+	public static Integer[] random(int a,int b,int n) {
+		if (a > b) {
+			int temp = a;
+			a = b;
+			b = temp;
+		}
+		Date date = new Date();  
+        Random random = new Random(date.getSeconds());
+        Integer[] res = new Integer[n];
+        for (int i = 0; i < n; i++) {
+        	res[i] = (int)((random.nextDouble() * (Math.abs(b - a) + 1)) + a);
+		}
+        return res;  
 	}
 }
