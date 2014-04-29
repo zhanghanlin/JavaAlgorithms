@@ -33,18 +33,6 @@ public class Heap {
 	}
 	
 	/**
-	 * 打印元素
-	 * @param s info
-	 */
-	public void print(String s){
-		System.out.print(s + " > ");
-		for (int i = 0; i < size; i++) {
-			System.out.print(src[i] + " ");
-		}
-		System.out.println("");
-	}
-	
-	/**
 	 * 堆排序
 	 * @param type
 	 */
@@ -109,14 +97,14 @@ public class Heap {
 		for (int i = 0; i < src.length; i++) {
 			heap.insert(src[i]);
 		}
-		heap.print("原始堆");
+		Utils.print(heap.src,"原始堆");
 		heap.buildHeap(HEAD_MAX);
-		heap.print("最大堆");
+		Utils.print(heap.src,"最大堆");
 		heap.heapSort(HEAD_MAX);
-		heap.print("最大堆排序");
+		Utils.print(heap.src,"最大堆排序");
 		heap.buildHeap(HEAD_MIN);
-		heap.print("最小堆");
+		Utils.print(heap.src,"最小堆");
 		heap.heapSort(HEAD_MIN);
-		heap.print("最小堆排序");
+		Utils.print(heap.src,"最小堆排序");
 	}
 }
