@@ -5,6 +5,11 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * 二叉查找树
+ * @author zhanghanlin
+ *
+ */
 public class BinarySearchTree {
 	//根节点
 	private TreeNode root = null;
