@@ -119,6 +119,7 @@ public class MaxPriorityQuene {
 		}
 		int val = quene[i];
 		quene[i] = quene[heapSize - 1];
+		quene[heapSize - 1] = null;
 		heapSize--;
 		maxHeapify(i);
 		return val;
@@ -130,22 +131,11 @@ public class MaxPriorityQuene {
 		for (int i = 0; i < s.length; i++) {
 			mph.insert(s[i]);
 		}
-		System.out.print("插入完毕：");
-		for (int i = 0; i < mph.heapSize; i++) {
-			System.out.print(mph.quene[i] + " ");
-		}
-		System.out.println("");
+		Utils.print(mph.quene,"插入完毕");
 		System.out.println("最大关键字（保留）" + mph.maximum());			
 		System.out.println("最大关键字（删除）" + mph.extractMax());
-		System.out.print("删除后的堆：");
-		for (int i = 0; i < mph.heapSize; i++) {
-			System.out.print(mph.quene[i] + " ");
-		}
-		System.out.println("");
+		Utils.print(mph.quene,"删除后的堆");
 		System.out.println("删除第四个节点" + mph.delete(3));
-		System.out.print("删除后的堆：");
-		for (int i = 0; i < mph.heapSize; i++) {
-			System.out.print(mph.quene[i] + " ");
-		}
+		Utils.print(mph.quene,"删除后的堆");
 	}
 }
