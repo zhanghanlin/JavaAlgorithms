@@ -126,7 +126,7 @@ public class MaxPriorityQuene {
 	}
 	
 	public static void main(String[] args) {
-		int[] s = {49,38,52,44,81,97,76,13,27,65};
+		Integer[] s = Utils.random(10, 100, 10);
 		MaxPriorityQuene mph = new MaxPriorityQuene();
 		for (int i = 0; i < s.length; i++) {
 			mph.insert(s[i]);
