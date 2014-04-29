@@ -92,7 +92,7 @@ public class Heap {
 	}
 	
 	public static void main(String[] args) {
-		int[] src = {49,38,52,44,81,97,76,13,27,65};
+		Integer[] src = Utils.random(10, 100, 10);
 		Heap heap = new Heap(10);
 		for (int i = 0; i < src.length; i++) {
 			heap.insert(src[i]);
