@@ -2,6 +2,12 @@ package com.zhl.test.util.stack;
 
 import java.util.Arrays;
 
+/**
+ * 栈实现
+ * @author zhanghanlin
+ *
+ * @param <T>
+ */
 public class ArrayStack<T> implements IStack<T> {
 	
 	private final int DEFAULT_SIZE = 3;
@@ -83,6 +89,10 @@ public class ArrayStack<T> implements IStack<T> {
 		array = new Object[capacity];
 	}
 	
+	/**
+	 * 元素个数
+	 * @return
+	 */
 	public int size(){
 		return size;
 	}

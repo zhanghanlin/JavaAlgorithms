@@ -1,5 +1,11 @@
 package com.zhl.test.util.stack;
 
+/**
+ * 栈
+ * @author zhanghanlin
+ *
+ * @param <T>
+ */
 public interface IStack<T> {
 	
 	/**
