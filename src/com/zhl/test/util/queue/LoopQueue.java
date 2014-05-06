@@ -151,8 +151,8 @@ public class LoopQueue<T> {
 	
 	public static void main(String[] args) {
 		Integer[] src = Utils.random(10, 100, 10);
-		LoopQueue<Integer> lq = new LoopQueue<Integer>(1,src.length + 1);
-		for (int i = 0; i < src.length; i++) {
+		LoopQueue<Integer> lq = new LoopQueue<Integer>(src[0],src.length);
+		for (int i = 1; i < src.length; i++) {
 			lq.add(src[i]);
 		}
 		System.out.println("插入后的队列：" + lq.toString());
