@@ -2,6 +2,8 @@ package com.zhl.test.util.stack;
 
 import java.util.Arrays;
 
+import com.zhl.test.util.Utils;
+
 /**
  * 栈实现
  * @author zhanghanlin
@@ -99,16 +101,17 @@ public class ArrayStack<T> implements IStack<T> {
 	
 	public static void main(String[] args) {
 		ArrayStack<Integer> stack = new ArrayStack<Integer>();
-		stack.push(1);
-		stack.push(4);
-		stack.push(3);
-		stack.push(6);
-		stack.push(2);
-		stack.push(9);
-		System.out.println(stack.empty());
-		System.out.println(stack.peek());
-		System.out.println(stack.size());
+		Integer[] src = Utils.random(10, 100, 10);
+		for (int i = 0; i < src.length; i++) {
+			stack.push(src[i]);
+		}
+		Utils.print(src,"原始数组");
+		System.out.println("栈是否为空：" + stack.empty());
+		System.out.println("得到第一个栈：" + stack.peek());
+		System.out.println("弹出：" + stack.pop());
+		System.out.println("弹出后得到第一个栈：" + stack.peek());		
+		System.out.println("栈大小：" + stack.size());
 		stack.clear();
-		System.out.println(stack.size());
+		System.out.println("清空栈后栈的大小：" +stack.size() + ",是否为空：" + stack.empty());
 	}
 }
