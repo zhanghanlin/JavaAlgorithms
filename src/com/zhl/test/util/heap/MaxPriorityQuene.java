@@ -66,11 +66,11 @@ public class MaxPriorityQuene {
 		int r = Utils.right(i);	//得到右孩子下标
 		int largest = i;
 		//如果左孩子val比src[i]的val大,则将其下标存储在largest中
-		if (l <= heapSize && quene[l] > quene[i]) {
+		if (l < heapSize && quene[l] > quene[i]) {
 			largest = l;
 		}
 		//如果右孩子val比src[i]的val大,则将其下标存储在largest中
-		if (r <= heapSize && quene[r] > quene[largest]) {
+		if (r < heapSize && quene[r] > quene[largest]) {
 			largest = r;
 		}
 		//如果下标i对应的元素不为最大,则不符合最大堆性质,交换i和largest的元素
@@ -99,13 +99,18 @@ public class MaxPriorityQuene {
 		if (value < quene[i]) {
 			System.err.println("newKey < oldKey");
 		}
-//		quene[i] = value;
+		//利用插入排序完成
 		while (i > 0 && quene[Utils.parent(i)] < value) {
-//			swap(i, parent(i));
 			quene[i] = quene[Utils.parent(i)];
 			i = Utils.parent(i);
 		}
 		quene[i] = value;
+		//交换法
+//		quene[i] = value;
+//		while (i > 0 && quene[Utils.parent(i)] < value) {
+//			Utils.swap(quene,i, Utils.parent(i));
+//			i = Utils.parent(i);
+//		}
 	}
 	
 	/**
@@ -129,13 +134,16 @@ public class MaxPriorityQuene {
 		Integer[] s = Utils.random(10, 100, 10);
 		MaxPriorityQuene mph = new MaxPriorityQuene();
 		for (int i = 0; i < s.length; i++) {
-			mph.insert(s[i]);
+			if (Utils.isNotBlank(s[i])) {
+				mph.insert(s[i]);				
+			}
 		}
+		Utils.print(s,"插入前");
 		Utils.print(mph.quene,"插入完毕");
-		System.out.println("最大关键字（保留）" + mph.maximum());			
-		System.out.println("最大关键字（删除）" + mph.extractMax());
+		System.out.println("最大关键字（保留）：" + mph.maximum());			
+		System.out.println("最大关键字（删除）：" + mph.extractMax());
 		Utils.print(mph.quene,"删除后的堆");
-		System.out.println("删除第四个节点" + mph.delete(3));
+		System.out.println("删除第四个节点：" + mph.delete(3));
 		Utils.print(mph.quene,"删除后的堆");
 	}
 }
