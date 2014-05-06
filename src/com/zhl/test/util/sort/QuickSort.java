@@ -44,8 +44,8 @@ public class QuickSort {
 	}
 	
 	public static void main(String[] args) {
-		Integer[] srcTemp = {4,8,3,45,23,78,21,45,6};
-		src = srcTemp;
+		src = Utils.random(10, 100, 10);
+		Utils.print(src,"排序前");
 		int p = 0;	//起始索引,默认第一个0
 		int r = src.length - 1;	//最末索引,数组长度减一
 		sort(p, r);	//开始排序
