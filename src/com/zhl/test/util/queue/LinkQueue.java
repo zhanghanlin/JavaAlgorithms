@@ -1,5 +1,7 @@
 package com.zhl.test.util.queue;
 
+import com.zhl.test.util.Utils;
+
 /**
  * 队列的链式存储结构及实现
  * @author zhanghanlin
@@ -131,12 +133,18 @@ public class LinkQueue<T> {
 	}
 	
 	public static void main(String[] args) {
+		Integer[] src = Utils.random(10, 100, 10);
 		LinkQueue<Integer> lq = new LinkQueue<Integer>();
-		lq.add(1);
-		lq.add(4);
-		lq.add(3);
-		lq.add(6);
-		lq.add(9);
-		System.out.println(lq.toString());
+		for (int i = 0; i < src.length; i++) {
+			lq.add(src[i]);
+		}
+		System.out.println("插入后的队列：" + lq.toString());
+		System.out.println("队列大小：" + lq.length());
+		System.out.println("返回队列顶元素，但不删除：" + lq.element());
+		System.out.println("返回后的队列：" + lq.toString());
+		System.out.println("返回队列顶元素，删除：" + lq.remove());
+		System.out.println("删除后的队列：" + lq.toString());
+		System.out.println("返回队列顶元素，删除：" + lq.remove());
+		System.out.println("删除后的队列：" + lq.toString());
 	}
 }
