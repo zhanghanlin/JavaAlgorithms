@@ -2,6 +2,8 @@ package com.zhl.test.util.queue;
 
 import java.util.Arrays;
 
+import com.zhl.test.util.Utils;
+
 /**
  * 循环队列（顺序结构存储实现） 
  * @author zhanghanlin
@@ -138,7 +140,9 @@ public class LoopQueue<T> {
 				sb.append(elementDate[i].toString() + ",");
 			}
 			for (int i = 0; i < front; i++) {
-				sb.append(elementDate[i].toString() + ",");
+				if (Utils.isNotBlank(elementDate[i])) {
+					sb.append(elementDate[i].toString() + ",");
+				}
 			}
 			int len = sb.length();
 			return sb.delete(len - 1, len).append("]").toString();
@@ -146,13 +150,17 @@ public class LoopQueue<T> {
 	}
 	
 	public static void main(String[] args) {
-		LoopQueue<Integer> lq = new LoopQueue<Integer>(13);
-		lq.add(1);
-		lq.add(3);
-		lq.add(4);
-		lq.add(5);
-		lq.add(7);
-		lq.add(9);
-		System.out.println(lq.toString());
+		Integer[] src = Utils.random(10, 100, 10);
+		LoopQueue<Integer> lq = new LoopQueue<Integer>(1,src.length + 1);
+		for (int i = 0; i < src.length; i++) {
+			lq.add(src[i]);
+		}
+		System.out.println("插入后的队列：" + lq.toString());
+		System.out.println("队列大小：" + lq.length());
+		System.out.println("返回队列顶元素，但不删除：" + lq.element());
+		System.out.println("返回队列顶元素，删除：" + lq.remove());
+		System.out.println("删除后的队列：" + lq.toString());
+		System.out.println("返回队列顶元素，删除：" + lq.remove());
+		System.out.println("删除后的队列：" + lq.toString());
 	}
 }
