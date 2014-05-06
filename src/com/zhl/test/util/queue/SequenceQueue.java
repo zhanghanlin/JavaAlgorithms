@@ -2,6 +2,8 @@ package com.zhl.test.util.queue;
 
 import java.util.Arrays;
 
+import com.zhl.test.util.Utils;
+
 /**
  * 队列的顺序存储结构及实现
  * @author zhanghanlin
@@ -125,16 +127,18 @@ public class SequenceQueue<T> {
 	}
 	
 	public static void main(String[] args) {
-		SequenceQueue<Integer> sq = new SequenceQueue<Integer>(10);
-		System.out.println(sq.toString() + ">>>" + sq.length());
-		sq.add(1);
-		sq.add(5);
-		sq.add(3);
-		sq.add(8);
-		sq.add(9);
-		sq.add(2);
-		System.out.println(sq.toString() + ">>>" + sq.length());
-		System.out.println(sq.remove());
-		System.out.println(sq.toString() + ">>>" + sq.length());
+		Integer[] src = Utils.random(10, 100, 10);
+		SequenceQueue<Integer> sq = new SequenceQueue<Integer>(src[0],src.length);
+		for (int i = 1; i < src.length; i++) {
+			sq.add(src[i]);
+		}
+		System.out.println("插入后的队列：" + sq.toString());
+		System.out.println("队列大小：" + sq.length());
+		System.out.println("返回队列顶元素，但不删除：" + sq.element());
+		System.out.println("返回后的队列：" + sq.toString());
+		System.out.println("返回队列顶元素，删除：" + sq.remove());
+		System.out.println("删除后的队列：" + sq.toString());
+		System.out.println("返回队列顶元素，删除：" + sq.remove());
+		System.out.println("删除后的队列：" + sq.toString());
 	}
 }
