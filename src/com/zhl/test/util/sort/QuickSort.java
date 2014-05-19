@@ -1,5 +1,7 @@
 package com.zhl.test.util.sort;
 
+import java.util.Arrays;
+
 import com.zhl.test.util.Utils;
 
 /**
@@ -51,8 +53,8 @@ public class QuickSort {
 	public static void randomSort(int p, int r){
 		if (p < r) {
 			int q = randomPartition(p, r);
-			randomPartition(p, q - 1);
-			randomPartition(q + 1, r);
+			randomSort(p, q - 1);
+			randomSort(q + 1, r);
 		}
 	}
 	
@@ -76,13 +78,14 @@ public class QuickSort {
 		int r = src.length - 1;	//最末索引,数组长度减一
 		sort(p, r);	//开始排序
 		Utils.print(src,"排序后");
+		Arrays.fill(src, null);
 
 		System.out.println("随机化版本：");
-		src = Utils.random(10, 100, 10);
+		src = Utils.random(11, 99, 10);
 		Utils.print(src,"排序前");
 		int p2 = 0;	//起始索引,默认第一个0
 		int r2 = src.length - 1;	//最末索引,数组长度减一
-		sort(p2, r2);	//开始排序
+		randomSort(p2, r2);	//开始排序
 		Utils.print(src,"排序后");	
 	}
 }
