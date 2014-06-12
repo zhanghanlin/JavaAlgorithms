@@ -8,8 +8,19 @@ import com.zhl.test.util.Utils;
  *
  */
 public class BubbleSort {
+	
 	/**
-	 * 冒泡排序
+	 * 伪代码
+	 * BUBBLESORT(A)
+	 * 	for i = 1 to A.length - 1
+	 * 		for j = A.length down to i + 1
+	 * 			if A[j] < A[j - 1]
+	 * 				exchange A[j] with A[j - 1]
+	 * 
+	 */
+	
+	/**
+	 * 冒泡排序 - 流行但低效
 	 * @param str
 	 */
 	public static void bubbleSort(Integer[] str){
