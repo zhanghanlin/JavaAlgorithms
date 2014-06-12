@@ -4,11 +4,11 @@ import com.zhl.test.util.Utils;
 
 /**
  * 归并排序
+ * 	分解 > 解决 > 合并
  * @author zhanghanlin
  *
  */
-public class MergeSort {
-	
+public class MergeSort {	
 	
 	/**
 	 * 伪代码
