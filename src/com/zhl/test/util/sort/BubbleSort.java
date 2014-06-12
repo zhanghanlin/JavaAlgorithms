@@ -4,6 +4,7 @@ import com.zhl.test.util.Utils;
 
 /**
  * 冒泡排序
+ * 	流行但低效
  * @author zhanghanlin
  *
  */
@@ -20,7 +21,7 @@ public class BubbleSort {
 	 */
 	
 	/**
-	 * 冒泡排序 - 流行但低效
+	 * 冒泡排序
 	 * @param str
 	 */
 	public static void bubbleSort(Integer[] str){
