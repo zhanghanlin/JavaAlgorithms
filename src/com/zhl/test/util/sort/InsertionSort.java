@@ -4,6 +4,7 @@ import com.zhl.test.util.Utils;
 
 /**
  * 插入排序
+ * 	对于少量元素的排序,它是一个有效的算法
  * @author zhanghanlin
  *
  */
