@@ -15,7 +15,7 @@ public class InsertionSort {
 	public static void insertionSort(Integer[] src) {
 		for (int i = 1; i < src.length; i++) {
 			if (src[i - 1] < src[i]) {
-				int temp = 	src[i];
+				int temp = src[i];
 				int j = i;
 				while (j > 0 && src[j - 1] < temp) {
 					src[j] = src[j - 1] ;
