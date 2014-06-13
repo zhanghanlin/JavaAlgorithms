@@ -97,6 +97,27 @@ public class QuickSort {
 		return partition(p, r);
 	}
 	
+	
+	/**
+	 * 模拟尾递归
+	 * 伪代码
+	 * TAIL-RECURSIVE-QUICKSORT(A, p, r)
+	 * 	while p < r
+	 * 		// Partition and sort left subarray
+	 * 		q = PARTITION(A, p, r)
+	 * 		TAIL-RECURSIVE-QUICKSORT(A, p, q - 1)
+	 * 		p = q + 1
+	 * @param p
+	 * @param r
+	 */
+	public static void tailRecursiveSort(int p, int r){
+		while (p < r) {
+			int q = partition(p, r);
+			tailRecursiveSort(p, q - 1);
+			p = q + 1;
+		}
+	}
+	
 	public static void main(String[] args) {
 		src = Utils.random(10, 100, 10);
 		System.out.println("普通版本：");
@@ -108,11 +129,20 @@ public class QuickSort {
 		Arrays.fill(src, null);
 
 		System.out.println("随机化版本：");
-		src = Utils.random(11, 99, 10);
+		src = Utils.random(13, 77, 10);
 		Utils.print(src,"排序前");
 		int p2 = 0;	//起始索引,默认第一个0
 		int r2 = src.length - 1;	//最末索引,数组长度减一
 		randomSort(p2, r2);	//开始排序
-		Utils.print(src,"排序后");	
+		Utils.print(src,"排序后");
+		Arrays.fill(src, null);
+		
+		System.out.println("尾递归实现：");
+		src = Utils.random(23, 96, 10);
+		Utils.print(src,"排序前");
+		int p3 = 0;	//起始索引,默认第一个0
+		int r3 = src.length - 1;	//最末索引,数组长度减一
+		tailRecursiveSort(p3, r3);	//开始排序
+		Utils.print(src,"排序后");
 	}
 }
