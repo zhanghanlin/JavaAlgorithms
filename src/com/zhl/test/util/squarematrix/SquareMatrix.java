@@ -32,6 +32,7 @@ public class SquareMatrix {
 	}
 	
 	/**
+	 * 矩阵 - 乘
 	 * 伪代码
 	 * SQUARE-MATRIX-MULTIPLY(A, B)
 	 * 	n = A.rows
@@ -42,11 +43,6 @@ public class SquareMatrix {
 	 * 			for k = 1 to n
 	 * 				c ij = c ij + a ik * b kj
 	 * 	return C
-	 * 
-	 */
-	
-	/**
-	 * 矩阵 - 乘
 	 * @param a
 	 * @param b
 	 */
