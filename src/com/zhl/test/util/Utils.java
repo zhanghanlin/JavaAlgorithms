@@ -1,6 +1,6 @@
 package com.zhl.test.util;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Random;
 
 /**
@@ -131,19 +131,33 @@ public class Utils {
 	 * @param n
 	 * @return
 	 */
-	@SuppressWarnings("deprecation")
 	public static Integer[] random(int a,int b,int n) {
 		if (a > b) {
 			int temp = a;
 			a = b;
 			b = temp;
 		}
-		Date date = new Date();  
-        Random random = new Random(date.getSeconds());
+        Random random = new Random(Calendar.getInstance().get(Calendar.SECOND));
         Integer[] res = new Integer[n];
         for (int i = 0; i < n; i++) {
         	res[i] = (int)((random.nextDouble() * (Math.abs(b - a) + 1)) + a);
 		}
         return res;  
+	}
+	
+	/**
+	 * 得到一个小数部分介于a-b之间小于1的随机Double数组
+	 * @param a
+	 * @param b
+	 * @param n
+	 * @return
+	 */
+	public static Double[] randomDouble(int a,int b,int n){
+		Double[] d = new Double[n];
+		Integer[] res = random(a, b, n);
+		for (int j = 0; j < res.length; j++) {
+			d[j] = (Double)(res[j] * 0.01); 
+		}
+		return d;
 	}
 }
