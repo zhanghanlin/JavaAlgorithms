@@ -33,6 +33,7 @@ public class Heap {
 	}
 	
 	/**
+	 * 堆排序
 	 * 伪代码
 	 * BUILDSORT(A)
 	 * 	BUILD-MAX-HEAP(A)
@@ -40,11 +41,6 @@ public class Heap {
 	 * 		exchange A[1] with A[i]
 	 * 		A.heap-size = A.heap-size - 1
 	 * 		MAX-HEAPIFY(A, 1)
-	 * 
-	 */
-	
-	/**
-	 * 堆排序
 	 * @param type
 	 */
 	public void heapSort(int type){
@@ -56,16 +52,12 @@ public class Heap {
 	}
 	
 	/**
+	 * 根据type得到最大/最小堆
 	 * 伪代码
 	 * BUILD-MAX-HEAP(A)
 	 * 	A.heap-size = A.length
 	 * 	for i = [A.length / 2] downto 1
 	 * 		MAX-HEAPIFY(A, i)
-	 * 
-	 */
-	
-	/**
-	 * 根据type得到最大/最小堆
 	 * @param type	MAX,MIN
 	 */
 	public void buildHeap(int type){
@@ -74,8 +66,9 @@ public class Heap {
 			heapify(i, heapSize, type);
 		}
 	}
-	
+		
 	/**
+	 * 最大/最小堆
 	 * 伪代码
 	 * MAX-HEAPIFY(A, i)
 	 * 	l = LEFT(i)
@@ -88,11 +81,6 @@ public class Heap {
 	 * 	if largest ≠ i
 	 * 		exchange A[i] with A[largest]
 	 * 		MAX-HEAPIFY(A, largest)
-	 * 
-	 */
-		
-	/**
-	 * 最大/最小堆
 	 * @param i	下标
 	 * @param heapSize	堆长度
 	 * @param type	MAX,MIN
