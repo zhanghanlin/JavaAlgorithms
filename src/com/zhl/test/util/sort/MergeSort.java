@@ -53,37 +53,13 @@ public class MergeSort {
 	 * 			A[k] = L[i]
 	 * 		else A[k] = R[j]
 	 * 			j = j + 1
-	 * 根据索引下标直接归到一个数组中
-	 * @param src	排序数组
-	 * @param s	L集合开始索引
-	 * @param m	R集合开始索引
-	 * @param t	最后索引
-	 */
-	public static void mergeA(Integer[] src,int s,int m,int t) {
-		int i = s , j = m + 1 , k = 0;
-		Integer[] temp = new Integer[src.length];
-		//将数组存放在临时的空间内
-		while (i <= m && j <= t) {
-			if (src[i] > src[j]) {
-				temp[k++] = src[i++];
-			} else {
-				temp[k++] = src[j++];
-			}
-		}
-		while (i <= m) temp[k++] = src[i++];
-		while (j <= t) temp[k++] = src[j++];
-		for (int x = 0; x < k; x++) src[s + x] = temp[x];
-	}
-	
-	/**
-	 * 归并排序 - 归并
 	 * 分别将特定的数放入特定的数组,最后合并数组
 	 * @param src	排序数组
 	 * @param s	L集合开始索引
 	 * @param m	R集合开始索引
 	 * @param t	最后索引
 	 */
-	public static void mergeB(Integer[] src,int s,int m,int t) {
+	public static void mergeA(Integer[] src,int s,int m,int t) {
 		//将两个序列分开存放在临时的空间内
 		Integer[] left = new Integer[m - s + 1];
 		Integer[] right = new Integer[t - m];
@@ -112,6 +88,32 @@ public class MergeSort {
 				}
 			}
 		}
+	}
+	
+
+	
+	/**
+	 * 归并排序 - 归并
+	 * 根据索引下标直接归到一个数组中
+	 * @param src	排序数组
+	 * @param s	L集合开始索引
+	 * @param m	R集合开始索引
+	 * @param t	最后索引
+	 */
+	public static void mergeB(Integer[] src,int s,int m,int t) {
+		int i = s , j = m + 1 , k = 0;
+		Integer[] temp = new Integer[src.length];
+		//将数组存放在临时的空间内
+		while (i <= m && j <= t) {
+			if (src[i] > src[j]) {
+				temp[k++] = src[i++];
+			} else {
+				temp[k++] = src[j++];
+			}
+		}
+		while (i <= m) temp[k++] = src[i++];
+		while (j <= t) temp[k++] = src[j++];
+		for (int x = 0; x < k; x++) src[s + x] = temp[x];
 	}
 	
 	public static void main(String[] args) {
