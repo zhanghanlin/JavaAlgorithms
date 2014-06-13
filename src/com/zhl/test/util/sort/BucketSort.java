@@ -44,8 +44,7 @@ public class BucketSort {
 			if (srcList[i] != null) {
 				insert(srcList[i]);
 			}
-		}
-		
+		}		
 		//把各个桶的排序结果合并  
 		int count = 0;
 		for (int i = 0; i < n; i++) {
