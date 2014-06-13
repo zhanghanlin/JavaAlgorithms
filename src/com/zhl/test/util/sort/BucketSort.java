@@ -79,6 +79,6 @@ public class BucketSort {
 		Double[] src = Utils.randomDouble(20, 90, 10);
 		Utils.print(src,"排序前");
 		bucketSort(src);
-		Utils.print(src,"排序后(降序)");
+		Utils.print(src,"排序后");
 	}
 }
