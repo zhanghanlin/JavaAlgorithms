@@ -32,6 +32,20 @@ public class SquareMatrix {
 	}
 	
 	/**
+	 * 伪代码
+	 * SQUARE-MATRIX-MULTIPLY(A, B)
+	 * 	n = A.rows
+	 * 	let C be a new n × n matrix
+	 * 	for i = 1 to n
+	 * 		for j = 1 to n
+	 * 			c ij = 0		//i j is Subscript
+	 * 			for k = 1 to n
+	 * 				c ij = c ij + a ik * b kj
+	 * 	return C
+	 * 
+	 */
+	
+	/**
 	 * 矩阵 - 乘
 	 * @param a
 	 * @param b
@@ -48,7 +62,7 @@ public class SquareMatrix {
 		}
 	}
 	/**
-	 * 缺少分解矩阵步骤
+	 * 缺少分解矩阵步骤 - 未完善
 	 * @param a
 	 * @param b
 	 * @return
