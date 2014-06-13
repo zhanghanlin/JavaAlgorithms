@@ -11,6 +11,7 @@ import com.zhl.test.util.Utils;
 public class InsertionSort {
 	
 	/**
+	 * 插入排序
 	 * 伪代码
 	 * INSERTION-SORT(A)
 	 * 	for j = 2 to A.length
@@ -21,11 +22,6 @@ public class InsertionSort {
 	 * 			A[i + 1] = A[i]
 	 * 			i = i - 1
 	 * 		A[i + 1] = key
-	 * 
-	 */
-	
-	/**
-	 * 插入排序
 	 * @param src
 	 */
 	public static void insertionSort(Integer[] src) {
