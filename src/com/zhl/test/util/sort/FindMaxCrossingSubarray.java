@@ -17,8 +17,9 @@ public class FindMaxCrossingSubarray {
 		SubArray subArray = findMaximumSubArray(src, 0, src.length - 1);
 		System.out.println(subArray.toString());
 	}	
-	
+		
 	/**
+	 * 最大子数组问题--分治策略
 	 * 伪代码
 	 * FIND-MAXIMUM-SUMARRAY(A, low, high)
 	 * 	if high == low
@@ -35,11 +36,6 @@ public class FindMaxCrossingSubarray {
 	 * 		elseif right-sum ≥ left-sum and right-sum ≥ cross-sum
 	 * 			return (right-low, right-high, right-sum)
 	 * 		else return (cross-low, cross-high, cross-sum)	
-	 * 
-	 */
-	
-	/**
-	 * 最大子数组问题--分治策略
 	 * @param src	数组
 	 * @param low	数组起始坐标
 	 * @param high	数组结束坐标
@@ -62,6 +58,7 @@ public class FindMaxCrossingSubarray {
 	}
 	
 	/**
+	 * 求跨越子数组的最大值 
 	 * 伪代码
 	 * FIND-MAX-CROSSING-SUBARRAY(A, low, mid, high)
 	 * 	left-sum = -∞
@@ -78,11 +75,6 @@ public class FindMaxCrossingSubarray {
 	 * 		if sum > right-sum
 	 * 		max-right = j
 	 * 	return (max-left, max-right, left-sum + right-sum)
-	 * 
-	 */
-	
-	/**
-	 * 求跨越子数组的最大值 
 	 * @param src	数组
 	 * @param low	起始坐标
 	 * @param mid	中间坐标
