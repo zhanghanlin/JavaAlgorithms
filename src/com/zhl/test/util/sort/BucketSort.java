@@ -76,8 +76,7 @@ public class BucketSort {
 	}
 	
 	public static void main(String[] args) {
-//		Double[] src = Utils.randomDouble(10, 100, 10);
-		Double src[] = {0.78,0.17,0.39,0.26,0.72,0.94,0.21,0.12,0.23,0.68};  
+		Double[] src = Utils.randomDouble(20, 90, 10);
 		Utils.print(src,"排序前");
 		bucketSort(src);
 		Utils.print(src,"排序后(降序)");
