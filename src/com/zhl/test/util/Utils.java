@@ -22,6 +22,14 @@ public class Utils {
 		t[j] = temp;
 	}
 	
+	
+	/**
+	 * 伪代码
+	 * PARENT(i)
+	 * 	return [i / 2]
+	 * 
+	 */
+	
 	/**
 	 * 得到父节点下标
 	 * @param i
@@ -32,6 +40,13 @@ public class Utils {
 	}
 	
 	/**
+	 * 伪代码
+	 * LEFT(i)
+	 * 	return 2i
+	 * 
+	 */
+	
+	/**
 	 * 得到左孩子下标
 	 * @param i
 	 * @return
@@ -39,6 +54,13 @@ public class Utils {
 	public static int left(int i){
 		return 2 * i;
 	}
+	
+	/**
+	 * 伪代码
+	 * RIGHT(i)
+	 * 	return 2i + 1
+	 * 
+	 */
 	
 	/**
 	 * 得到右孩子下标
