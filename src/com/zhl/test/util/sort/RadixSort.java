@@ -26,7 +26,7 @@ public class RadixSort {
 		int length = src.length;
 		Integer[] temp = new Integer[length];	//用于暂存元素
 		Integer[] count = new Integer[length];	//用于计数排序
-		int divide = 1;
+		int divide = 1;	//初始化倍数基数为1
 		for (int i = 0; i < d; i++) {
 			System.arraycopy(src, 0, temp, 0, length);
 			Arrays.fill(count, 0);
