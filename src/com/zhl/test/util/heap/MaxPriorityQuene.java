@@ -18,11 +18,11 @@ public class MaxPriorityQuene {
      * 往优先级队列出，插入一个元素 
      * 利用INCREASE-Key方法，从堆的最后增加元素 
      * 伪代码： 
-     * MAX-HEAP-INSERT(A, key) 
-     * 1 heap-size[A] ← heap-size[A] + 1 
-     * 2 A[heap-size[A]] ← -∞ 
-     * 3 HEAP-INCREASE-KEY(A, heap-size[A], key)
-     * 时间复杂度：O(lg n)
+     * MAX-HEAP-INSERT(A, key)
+     * 	A.heap-size = A.heap-size + 1
+     * 	A[A.heap-size] = -∞
+     * 	HEAP-INCREASE-KEY(A, A.heap-size, key)
+     * 	
      * @param value 待插入元素 
      */ 
 	public void insert(int value) {
@@ -31,8 +31,13 @@ public class MaxPriorityQuene {
 		increaseKey(heapSize - 1,value);
 	}
 	
+	
 	/**
 	 * 返回最大关键字
+	 * 
+	 * HEAP-MAXIMUM(A)
+	 * 	return A[1]
+	 * 
 	 * @return
 	 */
 	public int maximum(){
@@ -41,16 +46,9 @@ public class MaxPriorityQuene {
 	
 	/** 
      * 返回堆顶元素（最大值），并且将堆顶元素移除 
-     * 伪代码： 
-     * HEAP-EXTRACT-MAX(A) 
-     * 1 if heap-size[A] < 1 
-     * 2 then error "heap underflow" 
-     * 3 max ← A[1] 
-     * 4 A[1] ← A[heap-size[A]] 
-     * 5 heap-size[A] ← heap-size[A] - 1 
-     * 6 MAX-HEAPIFY(A, 1) 
-     * 7 return max 
-     * 时间复杂度：O(lg n), 
+     * 伪代码
+     * HEAP-EXTRACT-MAX(A, i)
+     * 	return HEAP-DELETE(A, i);
      * @return 
      */
 	public int extractMax(){
@@ -59,6 +57,18 @@ public class MaxPriorityQuene {
 	
 	/**
 	 * 最大堆
+	 * 伪代码
+	 * MAX-HEAPIFY(A, i)
+	 * 	l = LEFT(i)
+	 * 	r = RIGHT(i)
+	 * 	if l ≤ A.heap-size and A[l] > A[i]
+	 * 		largest = l
+	 * 	else largest = i
+	 * 	if r ≤ A.heap-size and A[r] > A[i]
+	 * 		largest = r
+	 * 	if largest ≠ i
+	 * 		exchange A[i] with A[largest]
+	 * 		MAX-HEAPIFY(A, largest)
 	 * @param i	下标
 	 */
 	public void maxHeapify(int i){
@@ -84,14 +94,14 @@ public class MaxPriorityQuene {
      * 增加给定索引位元素的值，并重新构成MaxHeap。 
      * 新值必须大于等于原有值 
      * 伪代码： 
-     * HEAP-INCREASE-KEY(A, i, key) 
-     * 1 if key < A[i] 
-     * 2 then error "new key is smaller than current key" 
-     * 3 A[i] ← key 
-     * 4 while i > 1 and A[PARENT(i)] < A[i] 
-     * 5 do exchange A[i] ↔ A[PARENT(i)] 
-     * 6 i ← PARENT(i) 
-     * 时间复杂度：O(lg n) 
+     * HEAP-INCREASE-KEY(A, i, key)
+     * 	if key < A[i]
+     * 		error "new key is smaller than current key"
+     * 	A[i] = key
+     * 	while i > 1 and A[PARENT(i)] < A[i]
+     * 		excheange A[i] with A[PARENT(i)]
+     * 		i = PARENT(i)
+     * 
      * @param i 索引位 
      * @param value 新值 
      */ 
@@ -115,6 +125,15 @@ public class MaxPriorityQuene {
 	
 	/**
 	 * 删除i节点
+     * 伪代码： 
+     * HEAP-DELETE(A,i) 
+     * 	if A.heap-size < i 
+     * 		error "heap underflow" 
+     *	max = A[i] 
+     *	A[i] = A[A.heap-size] 
+     *	A.heap-size = A.heap-size - 1 
+     *	MAX-HEAPIFY(A, i) 
+     *	return max
 	 * @param i
 	 * @return
 	 */
