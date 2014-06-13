@@ -1,5 +1,6 @@
 package com.zhl.test.util;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -156,8 +157,32 @@ public class Utils {
 		Double[] d = new Double[n];
 		Integer[] res = random(a, b, n);
 		for (int j = 0; j < res.length; j++) {
-			d[j] = (Double)(res[j] * 0.01); 
+			d[j] = Double.valueOf(formatBit(res[j], 2)); 
 		}
 		return d;
+	}
+	
+	/**
+	 * 格式化
+	 * @param o
+	 * @param bit 保留几位小数<0,1,2> 其他值默认为2
+	 * @return	保留bit位小数字符串
+	 */
+	public static String formatBit(Integer o,int bit) {
+		String p = "0.00";
+		try {
+			if (o != null && o.longValue() > 0){
+				BigDecimal b = new BigDecimal(o / 100.0);
+				String format = "%.2f";
+				if (bit <= 2 && bit >= 0) {
+					format = "%."+bit+"f";
+				}
+				p = String.format(format, b);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return p;
 	}
 }
