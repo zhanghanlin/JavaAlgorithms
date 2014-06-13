@@ -11,6 +11,7 @@ import com.zhl.test.util.Utils;
 public class MergeSort {	
 	
 	/**
+	 * 归并排序 - 排序
 	 * 伪代码
 	 * MERGE-SORT(A, p, r)
 	 * 	if p < r
@@ -18,11 +19,6 @@ public class MergeSort {
 	 * 		MERGE-SORT(A, p, q)
 	 * 		MERGE-SORT(A, q + 1, r)
 	 * 		MERGE(A, p, q, r)
-	 * 
-	 */
-	
-	/**
-	 * 归并排序 - 排序
 	 * @param src	数组
 	 * @param s	数组开始索引
 	 * @param t	数组长度-1
@@ -37,8 +33,8 @@ public class MergeSort {
 		}
 	}
 	
-	
 	/**
+	 * 归并排序 - 归并
 	 * 伪代码
 	 * MERGE(A, p, q, r)
 	 * 	n1 = q - p + 1
@@ -57,11 +53,6 @@ public class MergeSort {
 	 * 			A[k] = L[i]
 	 * 		else A[k] = R[j]
 	 * 			j = j + 1
-	 * 
-	 */
-	
-	/**
-	 * 归并排序 - 归并
 	 * 根据索引下标直接归到一个数组中
 	 * @param src	排序数组
 	 * @param s	L集合开始索引
