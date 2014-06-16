@@ -42,7 +42,7 @@ public class CountingSort {
 			c[i] = c[i] + c[i - 1];
 		}
 		for (int j = a.length - 1; j >= 0; j--) {
-			b[c[a[j]] - 1] = a[j];
+			b[--c[a[j]]] = a[j];
 			c[a[j]]--;
 		}
 	}
