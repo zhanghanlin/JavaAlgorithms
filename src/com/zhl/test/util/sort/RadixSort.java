@@ -30,21 +30,16 @@ public class RadixSort {
 		for (int i = 0; i < d; i++) {
 			System.arraycopy(src, 0, temp, 0, length);
 			Arrays.fill(count, 0);
-			
 			for (int j = 0; j < length; j++) {
 				count[(temp[j] / divide) % RADIX]++;
 			}
-			
 			for (int j = 1; j < RADIX; j++) {
 				count[j] += count[j - 1];
 			}
-			
 			for (int j = length - 1; j >= 0; j--) {
 				int tempKey = (temp[j] / divide) % RADIX;
-				count[tempKey]--;
-				src[count[tempKey]] = temp[j];
-			}
-			
+				src[--count[tempKey]] = temp[j];
+			}			
 			divide *= RADIX;
 		}
 	}
