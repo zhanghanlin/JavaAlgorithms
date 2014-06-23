@@ -139,10 +139,9 @@ public class CircularLinkedList<T> {
 			StringBuilder sb = new StringBuilder("[");
 			int count = size;
 			Node current = nil.next;
-			while (count > 0) {
+			while (count-- > 0) {
 				sb.append(current.toString() + ",");
 				current = current.next;
-				count--;
 			}
 			int len = sb.length();
 			return sb.delete(len - 1, len).append("]").toString();
