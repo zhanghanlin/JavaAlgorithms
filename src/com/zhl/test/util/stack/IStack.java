@@ -1,7 +1,9 @@
 package com.zhl.test.util.stack;
 
+
 /**
  * 栈
+ * 	栈实现的是一中后进先出策略(last-in,first-out,LIFO)
  * @author zhanghanlin
  *
  * @param <T>

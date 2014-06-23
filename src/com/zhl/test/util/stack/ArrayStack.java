@@ -12,39 +12,76 @@ import com.zhl.test.util.Utils;
  */
 public class ArrayStack<T> implements IStack<T> {
 	
+	/**
+	 * 栈默认大小
+	 */
 	private final int DEFAULT_SIZE = 3;
 	
+	/**
+	 * 栈内元素个数
+	 */
 	private int size = 0;
 	
+	/**
+	 * 栈总大小
+	 */
 	private int capacity = 0;
 
-	private int top = 0;	//next
+	/**
+	 * 最后一个元素坐标
+	 */
+	private int top = 0;
 	
+	/**
+	 * 栈数组
+	 */
 	private Object[] array;
 	
+	/**
+	 * 默认无参构造
+	 * 	默认创建一个默认长度的栈
+	 */
 	public ArrayStack(){
 		capacity = DEFAULT_SIZE;
 		array = new Object[capacity];
 		size = 0;
 	}
 	
+	/**
+	 * 创建指定大小的栈
+	 * @param capacity
+	 */
 	public ArrayStack(int capacity){
 		this.capacity = capacity;
 		array = new Object[capacity];
 		size = 0;
 	}
 	
+	/**
+	 * 出栈
+	 * 伪代码
+	 * POP(S)
+	 * 	if STACK-EMPTY(S)
+	 * 		error "underflow"
+	 * 	else S.top = S.top - 1
+	 * 		return S[S.top + 1]
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public T pop() {
 		// TODO Auto-generated method stub
-		T t = (T)array[top - 1];
-		array[top - 1] = null;
+		T t = (T)array[--top];
 		size--;
-		top--;
 		return t;
 	}
 
+	/**
+	 * 入栈
+	 * 伪代码
+	 * PUSH(S, x)
+	 * 	S.top = S.top + 1
+	 * 	S[S.top] = x
+	 */
 	@Override
 	public void push(T t) {
 		// TODO Auto-generated method stub
@@ -66,20 +103,34 @@ public class ArrayStack<T> implements IStack<T> {
 		Arrays.fill(array, null);
 		array = newArray;
 	}
-
+	
+	/**
+	 * 获取第一个栈(不出栈)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public T peek() {
 		// TODO Auto-generated method stub
 		return (T)array[top -1];
 	}
-
+	
+	/**
+	 * 栈的非空判断
+	 * 伪代码
+	 * STACK-EMPTY(S)
+	 * 	if S.top == 0
+	 * 		return true
+	 * 	return false
+	 */
 	@Override
 	public boolean empty() {
 		// TODO Auto-generated method stub
 		return size == 0;
 	}
 
+	/**
+	 * 清空栈
+	 */
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
@@ -92,11 +143,26 @@ public class ArrayStack<T> implements IStack<T> {
 	}
 	
 	/**
-	 * 元素个数
+	 * 栈内的元素个数
 	 * @return
 	 */
 	public int size(){
 		return size;
+	}
+	
+	/**
+	 * Override toString()
+	 */
+	public String toString() {
+		String o = "[";
+		if (!empty()) {
+			for (int i = 0; i < size; i++) {
+				o += array[i] + ",";
+			}
+		}
+		o = o.substring(0, o.length() - 1);
+		o += "]";
+		return o;
 	}
 	
 	public static void main(String[] args) {
@@ -106,10 +172,11 @@ public class ArrayStack<T> implements IStack<T> {
 			stack.push(src[i]);
 		}
 		Utils.print(src,"原始数组");
-		System.out.println("栈是否为空：" + stack.empty());
+		System.out.println("栈的大小：" +stack.size() + ",是否为空：" + stack.empty());
 		System.out.println("得到第一个栈：" + stack.peek());
 		System.out.println("弹出：" + stack.pop());
-		System.out.println("弹出后得到第一个栈：" + stack.peek());		
+		System.out.println("弹出后得到第一个栈：" + stack.peek());
+		System.out.println("弹出后栈：" + stack.toString());
 		System.out.println("栈大小：" + stack.size());
 		stack.clear();
 		System.out.println("清空栈后栈的大小：" +stack.size() + ",是否为空：" + stack.empty());
