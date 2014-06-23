@@ -35,7 +35,7 @@ public interface IStack<T> {
 	public boolean empty();	//is null
 	
 	/**
-	 * 情况栈
+	 * 清空栈
 	 */
 	public void clear();
 }
