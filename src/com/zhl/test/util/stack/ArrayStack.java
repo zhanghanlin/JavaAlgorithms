@@ -57,15 +57,6 @@ public class ArrayStack<T> implements IStack<T> {
 		size = 0;
 	}
 	
-	/**
-	 * 出栈
-	 * 伪代码
-	 * POP(S)
-	 * 	if STACK-EMPTY(S)
-	 * 		error "underflow"
-	 * 	else S.top = S.top - 1
-	 * 		return S[S.top + 1]
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public T pop() {
@@ -75,13 +66,6 @@ public class ArrayStack<T> implements IStack<T> {
 		return t;
 	}
 
-	/**
-	 * 入栈
-	 * 伪代码
-	 * PUSH(S, x)
-	 * 	S.top = S.top + 1
-	 * 	S[S.top] = x
-	 */
 	@Override
 	public void push(T t) {
 		// TODO Auto-generated method stub
@@ -114,14 +98,6 @@ public class ArrayStack<T> implements IStack<T> {
 		return (T)array[top -1];
 	}
 	
-	/**
-	 * 栈的非空判断
-	 * 伪代码
-	 * STACK-EMPTY(S)
-	 * 	if S.top == 0
-	 * 		return true
-	 * 	return false
-	 */
 	@Override
 	public boolean empty() {
 		// TODO Auto-generated method stub

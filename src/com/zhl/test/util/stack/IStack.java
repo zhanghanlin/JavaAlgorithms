@@ -12,12 +12,23 @@ public interface IStack<T> {
 	
 	/**
 	 * 出栈
+	 * 伪代码
+	 * POP(S)
+	 * 	if STACK-EMPTY(S)
+	 * 		error "underflow"
+	 * 	else S.top = S.top - 1
+	 * 		return S[S.top + 1]
 	 * @return
 	 */
 	public T pop();	//out
 	
+
 	/**
 	 * 入栈
+	 * 伪代码
+	 * PUSH(S, x)
+	 * 	S.top = S.top + 1
+	 * 	S[S.top] = x
 	 * @param t
 	 */
 	public void push(T t);	//put
@@ -29,7 +40,12 @@ public interface IStack<T> {
 	public T peek();	//get first
 	
 	/**
-	 * 判断栈是否为空
+	 * 栈的非空判断
+	 * 伪代码
+	 * STACK-EMPTY(S)
+	 * 	if S.top == 0
+	 * 		return true
+	 * 	return false
 	 * @return
 	 */
 	public boolean empty();	//is null
