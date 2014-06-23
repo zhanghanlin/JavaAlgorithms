@@ -150,11 +150,10 @@ public class LinkedList<T> {
 	 * 		x.next.prev = x.prev
 	 * @param t
 	 */
-	public void delete(T t) {
+	public void delete(Node n) {
 		if (isEmpty()) {
 			System.out.println("Null Error");
 		} else {
-			Node n = search(t);
 			if (n != null) {
 				if (n.prev != null) {
 					n.prev.next = n.next;
@@ -168,6 +167,9 @@ public class LinkedList<T> {
 		}
 	}
 	
+	/**
+	 * 清空链表
+	 */
 	public void clear() {
 		head = null;
 		tail = null;
