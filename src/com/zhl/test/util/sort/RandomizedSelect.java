@@ -7,7 +7,7 @@ import com.zhl.test.util.Utils;
  * @author zhanghanlin
  *
  */
-public class RandomizedSelect {
+public class RandomizedSelect<T extends Comparable<T>> {
 	
 	/**
 	 * 期望为线性时间的选择算法
@@ -28,22 +28,21 @@ public class RandomizedSelect {
 	 * @param r 结束索引
 	 * @param i	最小索引
 	 */
-	public static Integer randomSelect(Integer[] src, int p, int r, int i){
+	public static <T extends Comparable<T>> T randomSelect(T[] t, int p, int r, int i){
 		if (i < 1) {
 			i = 1;
 		}
 		if (p == r) {
-			return src[p];
+			return t[p];
 		}
-		QuickSort.src = src;
-		int q = QuickSort.randomPartition(p, r);
+		int q = QuickSort.randomPartition(t,p, r);
 		int k = q - p + 1;
 		if (i == k) {
-			return src[q];
+			return t[q];
 		} else if (i < k) {
-			return randomSelect(src, p, q - 1, i);
+			return randomSelect(t, p, q - 1, i);
 		} else {
-			return randomSelect(src, q + 1, r, i - k);
+			return randomSelect(t, q + 1, r, i - k);
 		}
 	}
 	
