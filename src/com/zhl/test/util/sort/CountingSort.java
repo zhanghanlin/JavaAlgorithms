@@ -31,7 +31,7 @@ public class CountingSort {
 	 * @param b
 	 * @param k
 	 */
-	public static void countingSort(Integer[] a,Integer[] b,int k){
+	public static void exampleSort(Integer[] a,Integer[] b,int k){
 		Integer[] c = new Integer[k];	//let C[0..k] be a new array
 		//for i = 0 to k
 		Arrays.fill(c, 0);
@@ -47,17 +47,77 @@ public class CountingSort {
 		}
 	}
 	
+	/**
+	 * 优化排序
+	 * @param t
+	 * @return
+	 */
+	public static Integer[] sort(Integer[] t) {
+		int maxValue = findMax(t);
+		int[] counts = new int[maxValue + 1];
+		updateCounts(t,counts);
+		populateCounts(t,counts);
+		return t;
+	}
+	
+	/**
+	 * 根据Counts,将对于的Val放入t
+	 * @param t
+	 * @param counts
+	 */
+	private static void populateCounts(Integer[] t, int[] counts) {
+		// TODO Auto-generated method stub
+		int index = 0;
+//		for (int i = 0; i < counts.length; i++) {
+//			int e = counts[i];
+//			while (e > 0) {
+//				t[index++] = i;
+//				e--;
+//			}
+//		}
+		for (int i = counts.length - 1; i > 0; i--) {
+			int e = counts[i];
+			while (e > 0) {
+				t[index++] = i;
+				e--;
+			}
+		}
+	}
+	
+	/**
+	 * 更新Counts数组的Val
+	 * @param t
+	 * @param counts
+	 */
+	private static void updateCounts(Integer[] t, int[] counts) {
+		// TODO Auto-generated method stub
+		for (int i : t) {
+			counts[i]++;
+		}
+	}
+	
+	/**
+	 * 得到t中最大的Val
+	 * @param t
+	 * @return
+	 */
+	private static int findMax(Integer[] t) {
+		// TODO Auto-generated method stub
+		int max = Integer.MIN_VALUE;
+		for (int i : t) {
+			if (i > max)
+				max = i;
+		}
+		return max;
+	}
+
 	public static void main(String[] args) {
 		Integer[] a = Utils.random(100, 10, 10);
 		Utils.print(a,"排序前");
 		Integer[] b = new Integer[a.length];
-		int k = a[0];
-		for (int i = 1; i < a.length; i++) {
-			if (k < a[i]) {
-				k = a[i];
-			}
-		}
-		countingSort(a, b, k+1);
-		Utils.print(b,"排序后");
+		exampleSort(a, b, findMax(a)+1);
+		Utils.print(b,"exampleSort正序排序");
+		sort(a);
+		Utils.print(a,"sort倒序排序");
 	}
 }
