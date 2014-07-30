@@ -17,8 +17,8 @@ public class Utils {
 	 * @param i	下标A
 	 * @param j	下标B
 	 */
-	public static void swap(Object[] t,int i,int j){
-		Object temp = t[i];
+	public static <T extends Comparable<T>> void swap(T[] t,int i,int j){
+		T temp = t[i];
 		t[i] = t[j];
 		t[j] = temp;
 	}
@@ -76,7 +76,7 @@ public class Utils {
 	 * 打印输出
 	 * @param o
 	 */
-	public static void print(Object[] o) {
+	public static <T extends Comparable<T>> void print(T[] o) {
 		if (o != null) {
 			for (int i = 0; i < o.length; i++) {
 				if (isNotBlank(o[i])) {
@@ -92,7 +92,7 @@ public class Utils {
 	 * @param o
 	 * @param info 在输出结果前增加消息
 	 */
-	public static void print(Object[] o,String info){
+	public static <T extends Comparable<T>> void print(T[] o,String info){
 		System.out.print(info + " : ");
 		print(o);
 	}
