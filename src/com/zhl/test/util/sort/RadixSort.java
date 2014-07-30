@@ -23,16 +23,16 @@ public class RadixSort {
 	/**
 	 * 基数排序 - 基于计数排序
 	 * 伪代码
-	 * @param src
-	 * @param d 位数
+	 * @param t
 	 */
-	public static void exampleSort(Integer[] src, int d){
-		int length = src.length;
+	public static void exampleSort(Integer[] t){
+		int length = t.length;
 		Integer[] temp = new Integer[length];	//用于暂存元素
 		Integer[] count = new Integer[length];	//用于计数排序
+		int numberOfDigits = findManxNumber(t);	//最大位数
 		int divide = 1;	//初始化倍数基数为1
-		for (int i = 0; i < d; i++) {
-			System.arraycopy(src, 0, temp, 0, length);
+		for (int i = 0; i < numberOfDigits; i++) {
+			System.arraycopy(t, 0, temp, 0, length);
 			Arrays.fill(count, 0);
 			for (int j = 0; j < length; j++) {
 				count[(temp[j] / divide) % RADIX]++;
@@ -42,7 +42,7 @@ public class RadixSort {
 			}
 			for (int j = length - 1; j >= 0; j--) {
 				int tempKey = (temp[j] / divide) % RADIX;
-				src[--count[tempKey]] = temp[j];
+				t[--count[tempKey]] = temp[j];
 			}			
 			divide *= RADIX;
 		}
@@ -128,7 +128,7 @@ public class RadixSort {
 	public static void main(String[] args) {
 		Integer[] a = Utils.random(1, 990, 10);
 		Utils.print(a,"排序前");
-		exampleSort(a, 3);
+		exampleSort(a);
 		Utils.print(a,"排序后");		
 		sort(a);
 		Utils.print(a,"排序后");
