@@ -76,11 +76,11 @@ public class Utils {
 	 * 打印输出
 	 * @param o
 	 */
-	public static <T extends Comparable<T>> void print(T[] o) {
+	public static <T extends Comparable<T>> void print(Comparable<T>[] o) {
 		if (o != null) {
-			for (int i = 0; i < o.length; i++) {
-				if (isNotBlank(o[i])) {
-					System.out.print(o[i].toString() + " ");
+			for (Comparable<T> i : o) {
+				if (i != null) {
+					System.out.print(i.toString() + " ");
 				}
 			}
 		}
@@ -92,7 +92,7 @@ public class Utils {
 	 * @param o
 	 * @param info 在输出结果前增加消息
 	 */
-	public static <T extends Comparable<T>> void print(T[] o,String info){
+	public static <T extends Comparable<T>> void print(Comparable<T>[] o,String info){
 		System.out.print(info + " : ");
 		print(o);
 	}
