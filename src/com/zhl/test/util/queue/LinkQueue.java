@@ -140,7 +140,7 @@ public class LinkQueue<T extends Comparable<T>> {
 		}
 		System.out.println("插入后的队列：" + lq.toString());
 		System.out.println("队列大小：" + lq.length());
-		System.out.println("返回队列顶元素，但不删除：" + lq.element());
+		System.out.println("返回队列尾部元素：" + lq.element());
 		System.out.println("返回后的队列：" + lq.toString());
 		System.out.println("返回队列顶元素，删除：" + lq.remove());
 		System.out.println("删除后的队列：" + lq.toString());
