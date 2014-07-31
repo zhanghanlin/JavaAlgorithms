@@ -7,29 +7,30 @@ import com.zhl.test.util.Utils;
  * @author zhanghanlin
  *
  */
-public class Heap {	
+public class Heap<T extends Comparable<T>> {	
 	public static final int HEAD_MAX = 0;	//最大堆标识
 	public static final int HEAD_MIN = 1;	//最小堆标识
 	private final int DEFAULT_CAPATITY_SIZE = 16;	//默认堆大小为16
 	
-	private Integer[] src;	//堆
+	private T[] src;	//堆
 	private int size = 0;	//堆中的元素个数
 	
+	@SuppressWarnings("unchecked")
 	public Heap() {
-		src = new Integer[DEFAULT_CAPATITY_SIZE];
+		src = (T[])new Comparable[DEFAULT_CAPATITY_SIZE];
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Heap(int size){
-		src = new Integer[size];
+		src = (T[])new Comparable[size];
 	}
 	
 	/**
 	 * insert value
 	 * @param value
 	 */
-	public void insert(int value){
-		src[size] = value;
-		size++;
+	public void insert(T value){
+		src[size++] = value;
 	}
 	
 	/**
@@ -91,20 +92,20 @@ public class Heap {
 		int largest = i;
 		if (type == HEAD_MAX) {
 			//如果左孩子val比src[i]的val大,则将其下标存储在largest中
-			if (l <= heapSize && src[l] > src[i]) {
+			if (l <= heapSize && src[l].compareTo(src[i]) > 0) {
 				largest = l;
 			}
 			//如果右孩子val比src[i]的val大,则将其下标存储在largest中
-			if (r <= heapSize && src[r] > src[largest]) {
+			if (r <= heapSize && src[r].compareTo(src[largest]) > 0) {
 				largest = r;
 			}
 		} else {
 			//如果左孩子val比src[i]的val大,则将其下标存储在largest中
-			if (l <= heapSize && src[l] < src[i]) {
+			if (l <= heapSize && src[l].compareTo(src[i]) < 0) {
 				largest = l;
 			}
 			//如果右孩子val比src[i]的val大,则将其下标存储在largest中
-			if (r <= heapSize && src[r] < src[largest]) {
+			if (r <= heapSize && src[r].compareTo(src[largest]) < 0) {
 				largest = r;
 			}
 		}
@@ -117,9 +118,9 @@ public class Heap {
 	
 	public static void main(String[] args) {
 		Integer[] src = Utils.random(10, 100, 10);
-		Heap heap = new Heap(10);
-		for (int i = 0; i < src.length; i++) {
-			heap.insert(src[i]);
+		Heap<Integer> heap = new Heap<Integer>(10);
+		for (Integer i : src) {
+			heap.insert(i);
 		}
 		Utils.print(heap.src,"原始堆");
 		heap.buildHeap(HEAD_MAX);
