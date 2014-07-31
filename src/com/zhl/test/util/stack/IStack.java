@@ -8,7 +8,7 @@ package com.zhl.test.util.stack;
  *
  * @param <T>
  */
-public interface IStack<T> {
+public interface IStack<T extends Comparable<T>> {
 	
 	/**
 	 * 出栈

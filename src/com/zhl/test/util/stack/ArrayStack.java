@@ -10,7 +10,7 @@ import com.zhl.test.util.Utils;
  *
  * @param <T>
  */
-public class ArrayStack<T> implements IStack<T> {
+public class ArrayStack<T extends Comparable<T>> implements IStack<T> {
 	
 	/**
 	 * 栈默认大小
@@ -35,15 +35,16 @@ public class ArrayStack<T> implements IStack<T> {
 	/**
 	 * 栈数组
 	 */
-	private Object[] array;
+	private T[] array;
 	
 	/**
 	 * 默认无参构造
 	 * 	默认创建一个默认长度的栈
 	 */
+	@SuppressWarnings("unchecked")
 	public ArrayStack(){
 		capacity = DEFAULT_SIZE;
-		array = new Object[capacity];
+		array = (T[])new Comparable[capacity];
 		size = 0;
 	}
 	
@@ -51,13 +52,13 @@ public class ArrayStack<T> implements IStack<T> {
 	 * 创建指定大小的栈
 	 * @param capacity
 	 */
+	@SuppressWarnings("unchecked")
 	public ArrayStack(int capacity){
 		this.capacity = capacity;
-		array = new Object[capacity];
+		array = (T[])new Comparable[capacity];
 		size = 0;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public T pop() {
 		// TODO Auto-generated method stub
@@ -80,9 +81,10 @@ public class ArrayStack<T> implements IStack<T> {
 	/**
 	 * 数组扩容
 	 */
+	@SuppressWarnings("unchecked")
 	public void enlarge() {
 		capacity = capacity + DEFAULT_SIZE;
-		Object[] newArray = new Object[capacity];
+		T[] newArray = (T[])new Comparable[capacity];
 		System.arraycopy(array, 0, newArray, 0, array.length);
 		Arrays.fill(array, null);
 		array = newArray;
@@ -91,7 +93,6 @@ public class ArrayStack<T> implements IStack<T> {
 	/**
 	 * 获取第一个栈(不出栈)
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public T peek() {
 		// TODO Auto-generated method stub
@@ -107,6 +108,7 @@ public class ArrayStack<T> implements IStack<T> {
 	/**
 	 * 清空栈
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
@@ -115,7 +117,7 @@ public class ArrayStack<T> implements IStack<T> {
 		top = 0;
 		size = 0;
 		capacity = DEFAULT_SIZE;
-		array = new Object[capacity];
+		array = (T[])new Comparable[capacity];
 	}
 	
 	/**

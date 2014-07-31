@@ -8,7 +8,7 @@ import java.util.List;
  * @author zhanghanlin
  *
  */
-public class QueueImplementByTwoStacks<T> {
+public class QueueImplementByTwoStacks<T extends Comparable<T>> {
 	ArrayStack<T> oneStack;
 	ArrayStack<T> twoStack;
 	
