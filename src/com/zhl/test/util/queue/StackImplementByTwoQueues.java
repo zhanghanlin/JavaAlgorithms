@@ -6,7 +6,7 @@ package com.zhl.test.util.queue;
  *
  * @param <T>
  */
-public class StackImplementByTwoQueues<T> {
+public class StackImplementByTwoQueues<T extends Comparable<T>> {
 
 	LinkQueue<T> oneQueue;
 	LinkQueue<T> twoQueue;

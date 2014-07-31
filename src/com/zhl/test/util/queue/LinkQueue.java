@@ -8,7 +8,7 @@ import com.zhl.test.util.Utils;
  *
  * @param <T>
  */
-public class LinkQueue<T> {
+public class LinkQueue<T extends Comparable<T>> {
 	
 	/**
 	 * 定义一个内部类Node，Node实例代表链队列的节点

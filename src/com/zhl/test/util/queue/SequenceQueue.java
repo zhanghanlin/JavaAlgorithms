@@ -10,12 +10,13 @@ import com.zhl.test.util.Utils;
  *
  * @param <T>
  */
-public class SequenceQueue<T> {
+public class SequenceQueue<T extends Comparable<T>> {
+	
 	private int DEFAULT_SIZE = 10;
 	//数组的长度
 	private int capacity;
 	//定义一个数组用于保存顺序队列的元素
-	private Object[] elementDate;
+	private T[] elementDate;
 	//保存顺序队列中元素的当前个数
 	private int front = 0;	//前
 	private int rear = 0;	//后
@@ -23,9 +24,10 @@ public class SequenceQueue<T> {
 	/**
 	 * 以默认数组长度创建空顺序队列
 	 */
+	@SuppressWarnings("unchecked")
 	public SequenceQueue(){
 		capacity = DEFAULT_SIZE;
-		elementDate = new Object[capacity];
+		elementDate = (T[])new Comparable[capacity];
 	}
 	
 	/**
@@ -43,9 +45,10 @@ public class SequenceQueue<T> {
 	 * @param t	指定顺序队列中第一个元素 
 	 * @param initSize	指定顺序队列底层数组的长度
 	 */
+	@SuppressWarnings("unchecked")
 	public SequenceQueue(T t, int initSize){
 		capacity = initSize;
-		elementDate = new Object[capacity];
+		elementDate = (T[])new Comparable[capacity];
 		elementDate[0] = t;
 		rear++;
 	}
@@ -81,7 +84,6 @@ public class SequenceQueue<T> {
 	 * 移除队列
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public T remove(){
 		if (empty()) {
 			throw new IndexOutOfBoundsException("空队列 - 下溢");
@@ -97,7 +99,6 @@ public class SequenceQueue<T> {
 	 * 返回队列顶元素，但不删除队列顶元素
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public T element(){
 		if (empty()) {
 			throw new IndexOutOfBoundsException("空队列");
