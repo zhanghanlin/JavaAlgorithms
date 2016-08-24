@@ -19,9 +19,9 @@ public class MaxPriorityQuene {
      * 利用INCREASE-Key方法，从堆的最后增加元素
      * 伪代码：
      * MAX-HEAP-INSERT(A, key)
-     * A.heap-size = A.heap-size + 1
-     * A[A.heap-size] = -∞
-     * HEAP-INCREASE-KEY(A, A.heap-size, key)
+     * --A.heap-size = A.heap-size + 1
+     * --A[A.heap-size] = -∞
+     * --HEAP-INCREASE-KEY(A, A.heap-size, key)
      *
      * @param value 待插入元素
      */
@@ -36,7 +36,7 @@ public class MaxPriorityQuene {
      * 返回最大关键字
      * <p>
      * HEAP-MAXIMUM(A)
-     * return A[1]
+     * --return A[1]
      *
      * @return
      */
@@ -48,7 +48,7 @@ public class MaxPriorityQuene {
      * 返回堆顶元素（最大值），并且将堆顶元素移除
      * 伪代码
      * HEAP-EXTRACT-MAX(A, i)
-     * return HEAP-DELETE(A, i);
+     * --return HEAP-DELETE(A, i);
      *
      * @return
      */
@@ -60,16 +60,16 @@ public class MaxPriorityQuene {
      * 最大堆
      * 伪代码
      * MAX-HEAPIFY(A, i)
-     * l = LEFT(i)
-     * r = RIGHT(i)
-     * if l ≤ A.heap-size and A[l] > A[i]
-     * largest = l
-     * else largest = i
-     * if r ≤ A.heap-size and A[r] > A[i]
-     * largest = r
-     * if largest ≠ i
-     * exchange A[i] with A[largest]
-     * MAX-HEAPIFY(A, largest)
+     * --l = LEFT(i)
+     * --r = RIGHT(i)
+     * --if l ≤ A.heap-size and A[l] > A[i]
+     * ----largest = l
+     * --else largest = i
+     * --if r ≤ A.heap-size and A[r] > A[i]
+     * ----largest = r
+     * --if largest ≠ i
+     * ----exchange A[i] with A[largest]
+     * ----MAX-HEAPIFY(A, largest)
      *
      * @param i 下标
      */
@@ -97,12 +97,12 @@ public class MaxPriorityQuene {
      * 新值必须大于等于原有值
      * 伪代码：
      * HEAP-INCREASE-KEY(A, i, key)
-     * if key < A[i]
-     * error "new key is smaller than current key"
-     * A[i] = key
-     * while i > 1 and A[PARENT(i)] < A[i]
-     * excheange A[i] with A[PARENT(i)]
-     * i = PARENT(i)
+     * --if key < A[i]
+     * ----error "new key is smaller than current key"
+     * --A[i] = key
+     * --while i > 1 and A[PARENT(i)] < A[i]
+     * ----excheange A[i] with A[PARENT(i)]
+     * ----i = PARENT(i)
      *
      * @param i     索引位
      * @param value 新值
@@ -129,13 +129,13 @@ public class MaxPriorityQuene {
      * 删除i节点
      * 伪代码：
      * HEAP-DELETE(A,i)
-     * if A.heap-size < i
-     * error "heap underflow"
-     * max = A[i]
-     * A[i] = A[A.heap-size]
-     * A.heap-size = A.heap-size - 1
-     * MAX-HEAPIFY(A, i)
-     * return max
+     * --if A.heap-size < i
+     * ----error "heap underflow"
+     * --max = A[i]
+     * --A[i] = A[A.heap-size]
+     * --A.heap-size = A.heap-size - 1
+     * --MAX-HEAPIFY(A, i)
+     * --return max
      *
      * @param i
      * @return
