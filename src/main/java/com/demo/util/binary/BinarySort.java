@@ -8,7 +8,7 @@ import java.util.List;
  *
  */
 public class BinarySort {
-	static List<TNode> list = new ArrayList<TNode>();	//存储二叉树集合
+	static List<TNode> list = new ArrayList<>();	//存储二叉树集合
 	public class TNode{
 		String key;
 		TNode left;
