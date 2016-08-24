@@ -45,7 +45,6 @@ public class LoopQueue<T extends Comparable<T>> {
      * @param t        指定顺序队列中第一个元素
      * @param initSize 指定顺序队列底层数组的长度
      */
-    @SuppressWarnings("unchecked")
     public LoopQueue(T t, int initSize) {
         capacity = initSize;
         elementDate = (T[]) new Comparable[capacity];
@@ -116,7 +115,7 @@ public class LoopQueue<T extends Comparable<T>> {
         if (empty()) {
             throw new IndexOutOfBoundsException("空队列");
         }
-        return (T) elementDate[front];
+        return elementDate[front];
     }
 
     /**
