@@ -67,7 +67,6 @@ public class CircularLinkedList<T extends Comparable<T>> {
     }
 
     public CircularLinkedList() {
-        // TODO Auto-generated constructor stub
         nil = new Node(null, null, null);
         nil.next = nil;
         nil.prev = nil;
