@@ -84,11 +84,11 @@ public class LinkedList<T extends Comparable<T>> {
      * 插入 by head
      * 伪代码
      * LIST-INSERT(L, x)
-     * x.next = L.head
-     * if L.head ≠ NIL
-     * L.head.prev = x
-     * L.head = x
-     * x.prev = NIL
+     * --x.next = L.head
+     * --if L.head ≠ NIL
+     * ----L.head.prev = x
+     * --L.head = x
+     * --x.prev = NIL
      *
      * @param t
      */
@@ -125,10 +125,10 @@ public class LinkedList<T extends Comparable<T>> {
      * 搜索
      * 伪代码
      * LIST-SEARCH(L, k)
-     * x = L.head
-     * while x ≠ NIL and x.key ≠ k
-     * x = x.next
-     * return x
+     * --x = L.head
+     * --while x ≠ NIL and x.key ≠ k
+     * ----x = x.next
+     * --return x
      *
      * @param t
      * @return
@@ -148,11 +148,11 @@ public class LinkedList<T extends Comparable<T>> {
      * 删除
      * 伪代码
      * LIST-DELETE(L, x)
-     * if x.prev ≠ NIL
-     * x.prev.next = x.next
-     * else L.head = x.next
-     * if x.next ≠ NIL
-     * x.next.prev = x.prev
+     * --if x.prev ≠ NIL
+     * ----x.prev.next = x.next
+     * --else L.head = x.next
+     * --if x.next ≠ NIL
+     * ----x.next.prev = x.prev
      *
      * @param n
      */
