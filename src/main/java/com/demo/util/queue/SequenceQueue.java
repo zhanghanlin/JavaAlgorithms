@@ -108,7 +108,7 @@ public class SequenceQueue<T extends Comparable<T>> {
         if (empty()) {
             throw new IndexOutOfBoundsException("空队列");
         }
-        return (T) elementDate[front];
+        return elementDate[front];
     }
 
     /**
