@@ -8,27 +8,33 @@ import com.demo.util.Utils;
  * @author zhanghanlin
  */
 public class Heap<T extends Comparable<T>> {
-    public static final int HEAD_MAX = 0;    //最大堆标识
-    public static final int HEAD_MIN = 1;    //最小堆标识
-    private final int DEFAULT_CAPATITY_SIZE = 16;    //默认堆大小为16
+    /**
+     * 默认堆大小为16
+     */
+    private static final int DEFAULT_CAPACITY_SIZE = 16;
+    /**
+     * 堆
+     */
+    private T[] src;
+    /**
+     * 堆中的元素个数
+     */
+    private int size = 0;
 
-    private T[] src;    //堆
-    private int size = 0;    //堆中的元素个数
-
-    public Heap() {
-        src = (T[]) new Comparable[DEFAULT_CAPATITY_SIZE];
+    Heap() {
+        this(DEFAULT_CAPACITY_SIZE);
     }
 
-    public Heap(int size) {
+    private Heap(int size) {
         src = (T[]) new Comparable[size];
     }
 
     /**
      * insert value
      *
-     * @param value
+     * @param value T
      */
-    public void insert(T value) {
+    void insert(T value) {
         src[size++] = value;
     }
 
@@ -42,13 +48,13 @@ public class Heap<T extends Comparable<T>> {
      * ------A.heap-size = A.heap-size - 1
      * ------MAX-HEAPIFY(A, 1)
      *
-     * @param type
+     * @param sortType SortType
      */
-    public void heapSort(int type) {
-        buildHeap(type);
+    void heapSort(SortType sortType) {
+        buildHeap(sortType);
         for (int i = size - 1; i >= 0; i--) {
             Utils.swap(src, 0, i);
-            heapify(0, i - 1, type);
+            heapIfy(0, i - 1, sortType);
         }
     }
 
@@ -60,12 +66,12 @@ public class Heap<T extends Comparable<T>> {
      * --for i = [A.length / 2] downto 1
      * ----MAX-HEAPIFY(A, i)
      *
-     * @param type MAX,MIN
+     * @param sortType MAX,MIN
      */
-    public void buildHeap(int type) {
+    void buildHeap(SortType sortType) {
         int heapSize = size - 1;
         for (int i = heapSize / 2; i >= 0; i--) {
-            heapify(i, heapSize, type);
+            heapIfy(i, heapSize, sortType);
         }
     }
 
@@ -86,13 +92,15 @@ public class Heap<T extends Comparable<T>> {
      *
      * @param i        下标
      * @param heapSize 堆长度
-     * @param type     MAX,MIN
+     * @param sortType MAX,MIN
      */
-    public void heapify(int i, int heapSize, int type) {
-        int l = Utils.left(i);    //得到左孩子下标
-        int r = Utils.right(i);    //得到右孩子下标
+    private void heapIfy(int i, int heapSize, SortType sortType) {
+        //得到左孩子下标
+        int l = Utils.left(i);
+        //得到右孩子下标
+        int r = Utils.right(i);
         int largest = i;
-        if (type == HEAD_MAX) {
+        if (sortType.equals(SortType.MAX)) {
             //如果左孩子val比src[i]的val大,则将其下标存储在largest中
             if (l <= heapSize && src[l].compareTo(src[i]) > 0) {
                 largest = l;
@@ -114,24 +122,29 @@ public class Heap<T extends Comparable<T>> {
         //如果下标i对应的元素不为最大,则不符合最大堆性质,交换i和largest的元素
         if (largest != i) {
             Utils.swap(src, i, largest);
-            heapify(largest, heapSize, type);
+            heapIfy(largest, heapSize, sortType);
         }
     }
 
-    public static void main(String[] args) {
-        Integer[] src = Utils.random(10, 100, 10);
-        Heap<Integer> heap = new Heap<Integer>(10);
-        for (Integer i : src) {
-            heap.insert(i);
-        }
-        Utils.print(heap.src, "原始堆");
-        heap.buildHeap(HEAD_MAX);
-        Utils.print(heap.src, "最大堆");
-        heap.heapSort(HEAD_MAX);
-        Utils.print(heap.src, "最大堆排序");
-        heap.buildHeap(HEAD_MIN);
-        Utils.print(heap.src, "最小堆");
-        heap.heapSort(HEAD_MIN);
-        Utils.print(heap.src, "最小堆排序");
+    public T[] getSrc() {
+        return src;
+    }
+
+    void setSrc(T[] src) {
+        this.src = src;
+    }
+
+    /**
+     * 排序枚举
+     */
+    public enum SortType {
+        /**
+         * 最小堆
+         */
+        MIN,
+        /**
+         * 最大堆
+         */
+        MAX
     }
 }
