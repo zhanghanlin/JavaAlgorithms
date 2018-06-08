@@ -31,8 +31,8 @@ public class Utils {
      * PARENT(i)
      * --return [i / 2]
      *
-     * @param i
-     * @return
+     * @param i i
+     * @return int
      */
     public static int parent(int i) {
         return i / 2;
@@ -44,8 +44,8 @@ public class Utils {
      * LEFT(i)
      * --return 2i
      *
-     * @param i
-     * @return
+     * @param i i
+     * @return int
      */
     public static int left(int i) {
         return 2 * i;
@@ -57,8 +57,8 @@ public class Utils {
      * RIGHT(i)
      * --return 2i + 1
      *
-     * @param i
-     * @return
+     * @param i i
+     * @return int
      */
     public static int right(int i) {
         return 2 * i + 1;
@@ -67,7 +67,7 @@ public class Utils {
     /**
      * 打印输出
      *
-     * @param o
+     * @param o T
      */
     public static <T extends Comparable<T>> void print(Comparable<T>[] o) {
         if (o != null) {
@@ -77,13 +77,13 @@ public class Utils {
                 }
             }
         }
-        System.out.println("");
+        System.out.println();
     }
 
     /**
      * 打印输出
      *
-     * @param o
+     * @param o    T
      * @param info 在输出结果前增加消息
      */
     public static <T extends Comparable<T>> void print(Comparable<T>[] o, String info) {
@@ -92,31 +92,11 @@ public class Utils {
     }
 
     /**
-     * 判断对象是否为空
-     *
-     * @param o
-     * @return
-     */
-    public static boolean isNotBlank(Object o) {
-        return o != null && !o.toString().equals("");
-    }
-
-    /**
-     * 判断对象是否为空
-     *
-     * @param o
-     * @return
-     */
-    public static boolean isBlank(Object o) {
-        return o == null || o.toString().equals("");
-    }
-
-    /**
      * 得到一个介于a和b之间的随机数
      *
-     * @param a
-     * @param b
-     * @return
+     * @param a a
+     * @param b b
+     * @return Integer
      */
     public static Integer random(int a, int b) {
         return a + new Double(Math.random() * (b - a)).intValue();
@@ -125,10 +105,10 @@ public class Utils {
     /**
      * 得到一个长度为N介于a和b之间的随机数组
      *
-     * @param a
-     * @param b
-     * @param n
-     * @return
+     * @param a a
+     * @param b b
+     * @param n n
+     * @return Integer[]
      */
     public static Integer[] random(int a, int b, int n) {
         if (a > b) {
@@ -147,10 +127,10 @@ public class Utils {
     /**
      * 得到一个小数部分介于a-b之间小于1的随机Double数组
      *
-     * @param a
-     * @param b
-     * @param n
-     * @return
+     * @param a a
+     * @param b b
+     * @param n n
+     * @return Double[]
      */
     public static Double[] randomDouble(int a, int b, int n) {
         Double[] d = new Double[n];
@@ -164,11 +144,11 @@ public class Utils {
     /**
      * 格式化
      *
-     * @param o
+     * @param o   Integer
      * @param bit 保留几位小数<0,1,2> 其他值默认为2
      * @return 保留bit位小数字符串
      */
-    public static String formatBit(Integer o, int bit) {
+    private static String formatBit(Integer o, int bit) {
         String p = "0.00";
         try {
             if (o != null && o.longValue() > 0) {

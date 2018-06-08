@@ -1,23 +1,25 @@
 package com.demo.util.binary;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * 二叉查找树
  *
  * @author zhanghanlin
  */
-public class BinarySearchTree {
+class BinarySearchTree {
+
     /**
      * 根节点
      */
     private TreeNode<Integer> root = null;
 
-    /**
-     * 遍历节点列表
-     */
-    private List<TreeNode<Integer>> nodeList = new ArrayList<>();
+    BinarySearchTree() {
+    }
+
+    private BinarySearchTree(TreeNode<Integer> root) {
+        this.root = root;
+    }
 
     /**
      * 判断二叉查找树是否为空
@@ -90,49 +92,6 @@ public class BinarySearchTree {
             }
         }
         return parentNode;
-    }
-
-    /**
-     * 删除
-     *
-     * @param node TreeNode
-     * @throws Exception Exception
-     */
-    private void delete(TreeNode<Integer> node) throws Exception {
-        //该结点既无左孩子结点，也无右孩子结点
-        TreeNode<Integer> parentNode = node.getParentNode();
-        if (node.notChild()) {
-            if (parentNode == parentNode.getLeftNode()) {
-                parentNode.setLeftNode(null);
-            } else {
-                parentNode.setRightNode(null);
-            }
-            return;
-        }
-        //该结点左孩子结点为空,右孩子结点非空
-        if (node.getLeftNode() == null) {
-            node.getRightNode().setParentNode(parentNode);
-            if (node == parentNode.getLeftNode()) {
-                parentNode.setLeftNode(node.getRightNode());
-            } else {
-                parentNode.setRightNode(node.getRightNode());
-            }
-            return;
-        }
-        //该结点左孩子结点非空,右孩子结点为空
-        if (node.getRightNode() == null) {
-            node.getLeftNode().setParentNode(parentNode);
-            if (node == parentNode.getLeftNode()) {
-                parentNode.setLeftNode(node.getLeftNode());
-            } else {
-                parentNode.setRightNode(node.getLeftNode());
-            }
-            return;
-        }
-        //该结点左右孩子结点均非空,则删除该结点的后继结点,并用该后继结点取代该结点
-        TreeNode<Integer> successorNode = successor(node);
-        delete(successorNode);
-        node.setObject(successorNode.getObject());
     }
 
     /**
@@ -219,61 +178,143 @@ public class BinarySearchTree {
         return parentNode;
     }
 
-
     /**
-     * 获得二叉查找树的中序遍历结点列表
-     *
-     * @return List List
+     * 前序
+     * 访问根结点的操作发生在遍历其左右子树之前
      */
-    private List<TreeNode<Integer>> inOrderTraverseList() {
-        if (nodeList != null) {
-            nodeList.clear();
-        }
-        inOrderTraverse(root);
-        return nodeList;
+    void preOrderTraversal() {
+        sort(root, SortType.FRONT);
     }
 
     /**
-     * 对给定二叉查找树进行中序遍历
-     *
-     * @param root TreeNode
+     * 中序
+     * 访问根结点的操作发生在遍历其左右子树之中
      */
-    private void inOrderTraverse(TreeNode<Integer> root) {
-        if (root == null) {
+    void inOrderTraversal() {
+        sort(root, SortType.MIDDLE);
+    }
+
+    /**
+     * 后序
+     * 访问根结点的操作发生在遍历其左右子树之后
+     */
+    void postOrderTraversal() {
+        sort(root, SortType.AFTER);
+    }
+
+    /**
+     * 根据中序和前/后序得到BinarySearchTree
+     *
+     * @param arr       前/后序数组
+     * @param middleArr 中序数组
+     * @param sortType  排序规则
+     * @return BinarySearchTree
+     */
+    BinarySearchTree getBstByTraversal(Integer[] arr, Integer[] middleArr, SortType sortType) {
+        return new BinarySearchTree(getTreeByTraversal(arr, middleArr, sortType));
+    }
+
+    /**
+     * 删除
+     *
+     * @param node TreeNode
+     * @throws Exception Exception
+     */
+    private void delete(TreeNode<Integer> node) throws Exception {
+        //该结点既无左孩子结点，也无右孩子结点
+        TreeNode<Integer> parentNode = node.getParentNode();
+        if (node.notChild()) {
+            if (parentNode == parentNode.getLeftNode()) {
+                parentNode.setLeftNode(null);
+            } else {
+                parentNode.setRightNode(null);
+            }
             return;
         }
-        inOrderTraverse(root.getLeftNode());
-        nodeList.add(root);
-        inOrderTraverse(root.getRightNode());
+        //该结点左孩子结点为空,右孩子结点非空
+        if (node.getLeftNode() == null) {
+            node.getRightNode().setParentNode(parentNode);
+            if (node == parentNode.getLeftNode()) {
+                parentNode.setLeftNode(node.getRightNode());
+            } else {
+                parentNode.setRightNode(node.getRightNode());
+            }
+            return;
+        }
+        //该结点左孩子结点非空,右孩子结点为空
+        if (node.getRightNode() == null) {
+            node.getLeftNode().setParentNode(parentNode);
+            if (node == parentNode.getLeftNode()) {
+                parentNode.setLeftNode(node.getLeftNode());
+            } else {
+                parentNode.setRightNode(node.getLeftNode());
+            }
+            return;
+        }
+        //该结点左右孩子结点均非空,则删除该结点的后继结点,并用该后继结点取代该结点
+        TreeNode<Integer> successorNode = successor(node);
+        delete(successorNode);
+        node.setObject(successorNode.getObject());
     }
 
     /**
-     * 获取二叉查找树中关键字的有序列表
+     * 根据中序和前/后序得到TreeNode
      *
-     * @return String
+     * @param arr       前/后序数组
+     * @param middleArr 中序数组
+     * @param sortType  排序规则
+     * @return BinarySearchTree
      */
-    String toStringOfOrderList() {
-        StringBuilder sbBuilder = new StringBuilder(" [ ");
-        for (TreeNode p : inOrderTraverseList()) {
-            sbBuilder.append(p.getObject());
-            sbBuilder.append(" ");
+    private TreeNode<Integer> getTreeByTraversal(Integer[] arr, Integer[] middleArr, SortType sortType) {
+        Integer object = arr[0];
+        if (sortType.equals(SortType.AFTER)) {
+            object = arr[arr.length - 1];
         }
-        sbBuilder.append("]");
-        return sbBuilder.toString();
+        TreeNode<Integer> node = new TreeNode<>(object);
+        int index = Arrays.binarySearch(middleArr, node.getObject());
+        int leftFrom = 1;
+        int leftEnd = index + 1;
+        int rightFrom = index + 1;
+        int rightEnd = arr.length;
+        if (sortType.equals(SortType.AFTER)) {
+            leftFrom = 0;
+            leftEnd = index;
+            rightFrom = index;
+            rightEnd = arr.length - 1;
+        }
+        if (index > 0) {
+            node.setLeftNode(getTreeByTraversal(Arrays.copyOfRange(arr, leftFrom, leftEnd), Arrays.copyOfRange(middleArr, 0, index), sortType));
+        }
+        if (index + 1 < middleArr.length) {
+            node.setRightNode(getTreeByTraversal(Arrays.copyOfRange(arr, rightFrom, rightEnd), Arrays.copyOfRange(middleArr, index + 1, middleArr.length), sortType));
+        }
+        return node;
+    }
+
+    /**
+     * 排序
+     *
+     * @param treeNode 二叉树
+     * @param sortType 排序规则
+     */
+    private void sort(TreeNode<Integer> treeNode, SortType sortType) {
+        if (treeNode == null) {
+            return;
+        }
+        if (sortType.equals(SortType.FRONT)) {
+            System.out.print(treeNode.toString());
+        }
+        sort(treeNode.getLeftNode(), sortType);
+        if (sortType.equals(SortType.MIDDLE)) {
+            System.out.print(treeNode.toString());
+        }
+        sort(treeNode.getRightNode(), sortType);
+        if (sortType.equals(SortType.AFTER)) {
+            System.out.print(treeNode.toString());
+        }
     }
 
     TreeNode<Integer> getRoot() {
         return root;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sbBuilder = new StringBuilder("[");
-        for (TreeNode node : inOrderTraverseList()) {
-            sbBuilder.append(node.getObject());
-            sbBuilder.append(" ");
-        }
-        sbBuilder.append("]");
-        return sbBuilder.toString();
     }
 }

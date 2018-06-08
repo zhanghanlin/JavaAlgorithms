@@ -7,12 +7,12 @@ import com.demo.util.Utils;
  *
  * @author zhanghanlin
  */
-public class MaxPriorityQuene {
+class MaxPriorityQueue {
 
     private final int DEFAULT_CAPACITY_SIZE = 16;
     private int capacity = DEFAULT_CAPACITY_SIZE;
-    private Integer[] quene = new Integer[capacity];
-    public int heapSize = 0;
+    private Integer[] queue = new Integer[capacity];
+    private int heapSize = 0;
 
     /**
      * 往优先级队列出，插入一个元素
@@ -25,10 +25,37 @@ public class MaxPriorityQuene {
      *
      * @param value 待插入元素
      */
-    public void insert(int value) {
-        quene[heapSize] = value;
+    void insert(int value) {
+        queue[heapSize] = value;
         heapSize++;
         increaseKey(heapSize - 1, value);
+    }
+
+    /**
+     * 删除i节点
+     * 伪代码：
+     * HEAP-DELETE(A,i)
+     * --if A.heap-size < i
+     * ----error "heap underflow"
+     * --max = A[i]
+     * --A[i] = A[A.heap-size]
+     * --A.heap-size = A.heap-size - 1
+     * --MAX-HEAPIFY(A, i)
+     * --return max
+     *
+     * @param i 节点i
+     * @return 删除节点
+     */
+    int delete(int i) {
+        if (heapSize - 1 < i) {
+            throw new NullPointerException("IS NULL");
+        }
+        int val = queue[i];
+        queue[i] = queue[heapSize - 1];
+        queue[heapSize - 1] = null;
+        heapSize--;
+        maxHeapIfy(i);
+        return val;
     }
 
 
@@ -38,10 +65,10 @@ public class MaxPriorityQuene {
      * HEAP-MAXIMUM(A)
      * --return A[1]
      *
-     * @return
+     * @return maximum
      */
-    public int maximum() {
-        return quene[0];
+    int maximum() {
+        return queue[0];
     }
 
     /**
@@ -50,9 +77,9 @@ public class MaxPriorityQuene {
      * HEAP-EXTRACT-MAX(A, i)
      * --return HEAP-DELETE(A, i);
      *
-     * @return
+     * @return extractMax
      */
-    public int extractMax() {
+    int extractMax() {
         return delete(0);
     }
 
@@ -73,22 +100,24 @@ public class MaxPriorityQuene {
      *
      * @param i 下标
      */
-    public void maxHeapify(int i) {
-        int l = Utils.left(i);    //得到左孩子下标
-        int r = Utils.right(i);    //得到右孩子下标
+    private void maxHeapIfy(int i) {
+        //得到左孩子下标
+        int l = Utils.left(i);
+        //得到右孩子下标
+        int r = Utils.right(i);
         int largest = i;
         //如果左孩子val比src[i]的val大,则将其下标存储在largest中
-        if (l < heapSize && quene[l] > quene[i]) {
+        if (l < heapSize && queue[l] > queue[i]) {
             largest = l;
         }
         //如果右孩子val比src[i]的val大,则将其下标存储在largest中
-        if (r < heapSize && quene[r] > quene[largest]) {
+        if (r < heapSize && queue[r] > queue[largest]) {
             largest = r;
         }
         //如果下标i对应的元素不为最大,则不符合最大堆性质,交换i和largest的元素
         if (largest != i) {
-            Utils.swap(quene, i, largest);
-            maxHeapify(largest);
+            Utils.swap(queue, i, largest);
+            maxHeapIfy(largest);
         }
     }
 
@@ -107,65 +136,25 @@ public class MaxPriorityQuene {
      * @param i     索引位
      * @param value 新值
      */
-    public void increaseKey(int i, int value) {
-        if (value < quene[i]) {
+    private void increaseKey(int i, int value) {
+        if (value < queue[i]) {
             System.err.println("newKey < oldKey");
         }
         //利用插入排序完成
-        while (i > 0 && quene[Utils.parent(i)] < value) {
-            quene[i] = quene[Utils.parent(i)];
+        while (i > 0 && queue[Utils.parent(i)] < value) {
+            queue[i] = queue[Utils.parent(i)];
             i = Utils.parent(i);
         }
-        quene[i] = value;
+        queue[i] = value;
         //交换法
-//		quene[i] = value;
-//		while (i > 0 && quene[Utils.parent(i)] < value) {
-//			Utils.swap(quene,i, Utils.parent(i));
+//		queue[i] = value;
+//		while (i > 0 && queue[Utils.parent(i)] < value) {
+//			Utils.swap(queue,i, Utils.parent(i));
 //			i = Utils.parent(i);
 //		}
     }
 
-    /**
-     * 删除i节点
-     * 伪代码：
-     * HEAP-DELETE(A,i)
-     * --if A.heap-size < i
-     * ----error "heap underflow"
-     * --max = A[i]
-     * --A[i] = A[A.heap-size]
-     * --A.heap-size = A.heap-size - 1
-     * --MAX-HEAPIFY(A, i)
-     * --return max
-     *
-     * @param i
-     * @return
-     */
-    public int delete(int i) {
-        if (heapSize - 1 < i) {
-            throw new NullPointerException("IS NULL");
-        }
-        int val = quene[i];
-        quene[i] = quene[heapSize - 1];
-        quene[heapSize - 1] = null;
-        heapSize--;
-        maxHeapify(i);
-        return val;
-    }
-
-    public static void main(String[] args) {
-        Integer[] s = Utils.random(10, 100, 10);
-        MaxPriorityQuene mph = new MaxPriorityQuene();
-        for (int i = 0; i < s.length; i++) {
-            if (Utils.isNotBlank(s[i])) {
-                mph.insert(s[i]);
-            }
-        }
-        Utils.print(s, "插入前");
-        Utils.print(mph.quene, "插入完毕");
-        System.out.println("最大关键字（保留）：" + mph.maximum());
-        System.out.println("最大关键字（删除）：" + mph.extractMax());
-        Utils.print(mph.quene, "删除后的堆");
-        System.out.println("删除第四个节点：" + mph.delete(3));
-        Utils.print(mph.quene, "删除后的堆");
+    Integer[] getQueue() {
+        return queue;
     }
 }

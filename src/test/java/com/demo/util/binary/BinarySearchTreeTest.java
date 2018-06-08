@@ -1,5 +1,10 @@
 package com.demo.util.binary;
 
+/**
+ * 二叉查找树Test
+ *
+ * @author zhanghanlin6
+ */
 public class BinarySearchTreeTest {
 
     public static void main(String[] args) {
@@ -11,46 +16,48 @@ public class BinarySearchTreeTest {
                 bst.insert(object);
             }
             System.out.println("树是否为空:" + bst.isEmpty());
-            TreeNode<Integer> minElemNode = bst.minElemNode(bst.getRoot());
-            System.out.println("最小:" + minElemNode.getObject());
-            testNode(bst, minElemNode);
-            TreeNode<Integer> maxKeyNode = bst.maxElemNode(bst.getRoot());
-            System.out.println("最大:" + maxKeyNode.getObject());
-            testNode(bst, maxKeyNode);
-            System.out.println("根结点:" + bst.getRoot().getObject());
-            testNode(bst, bst.getRoot());
-            testTraverse(bst);
-            System.out.println("查找7:" + bst.search(7));
-            bst.delete(7);
-            System.out.println("查找7:" + bst.search(7));
-            System.out.println("查找12:" + bst.search(12));
-            bst.insert(12);
-            System.out.println("查找12:" + bst.search(12));
-            testTraverse(bst);
-            bst.insert(16);
-            bst.delete(6);
-            bst.delete(4);
-            testTraverse(bst);
+            System.out.println("****************************** ");
+            sortPrint(bst);
+            TreeNode<Integer> searchNode = bst.search(7);
+            System.out.println("查询节点7:" + searchNode);
+            TreeNode<Integer> precursorNode = bst.precursor(searchNode);
+            TreeNode<Integer> successorNode = bst.successor(searchNode);
+            System.out.println("本结点:" + searchNode.getObject());
+            System.out.println("前趋结点:" + (precursorNode == null ? "NIL" : precursorNode.toString()));
+            System.out.println("后继结点:" + (successorNode == null ? "NIL" : successorNode.toString()));
+            System.out.println("****************************** ");
+            System.out.println("最小节点:" + bst.minElemNode(bst.getRoot()));
+            System.out.println("最大节点:" + bst.maxElemNode(bst.getRoot()));
+            System.out.println("******************************");
+            System.out.println("查询节点6:" + bst.search(6));
+            System.out.println("删除节点13");
+            bst.delete(13);
+            System.out.println("查询节点13:" + bst.search(13));
+            System.out.println("新增节点17");
+            bst.insert(17);
+            System.out.println("******************************");
+            Integer[] objectFrontArr = new Integer[]{15, 6, 3, 2, 4, 7, 13, 9, 18, 20};
+            Integer[] objectMiddleArr = new Integer[]{2, 3, 4, 6, 7, 9, 13, 15, 18, 20};
+            Integer[] objectAfterArr = new Integer[]{2, 4, 3, 9, 13, 7, 6, 20, 18, 15};
+            System.out.println("根据前序、中序得到二叉树:");
+            BinarySearchTree fmBst = bst.getBstByTraversal(objectFrontArr, objectMiddleArr, SortType.FRONT);
+            sortPrint(fmBst);
+            System.out.println("根据后序、中序得到二叉树:");
+            BinarySearchTree amBst = bst.getBstByTraversal(objectAfterArr, objectMiddleArr, SortType.AFTER);
+            sortPrint(amBst);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
 
-    private static void testNode(BinarySearchTree bst, TreeNode<Integer> node) throws Exception {
-        TreeNode<Integer> precursorNode = bst.precursor(node);
-        TreeNode<Integer> successorNode = bst.successor(node);
-        System.out.println("****************************** ");
-        System.out.println("本结点:" + node.getObject());
-        System.out.println("前趋结点:" + (precursorNode == null ? "NIL" : precursorNode.getObject()));
-        System.out.println("后继结点:" + (successorNode == null ? "NIL" : successorNode.getObject()));
-        System.out.println("****************************** ");
-    }
-
-    private static void testTraverse(BinarySearchTree bst) {
-        System.out.println("****************************** ");
-        System.out.println("二叉树遍历:" + bst);
-        System.out.println("二叉查找树转换为有序列表:" + bst.toStringOfOrderList());
-        System.out.println("****************************** ");
+    private static void sortPrint(BinarySearchTree bst) {
+        System.out.print("前序排序:");
+        bst.preOrderTraversal();
+        System.out.print("\r\n中序排序:");
+        bst.inOrderTraversal();
+        System.out.print("\r\n后序排序:");
+        bst.postOrderTraversal();
+        System.out.println("\r\n******************************");
     }
 }

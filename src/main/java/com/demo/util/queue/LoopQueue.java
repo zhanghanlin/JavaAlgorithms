@@ -1,6 +1,6 @@
 package com.demo.util.queue;
 
-import com.demo.util.Utils;
+import com.demo.util.StringUtils;
 
 import java.util.Arrays;
 
@@ -10,20 +10,27 @@ import java.util.Arrays;
  * @param <T>
  * @author zhanghanlin
  */
-public class LoopQueue<T extends Comparable<T>> {
-    private int DEFAULT_SIZE = 10;
-    //数组的长度
+class LoopQueue<T extends Comparable<T>> {
+
+    private static final int DEFAULT_SIZE = 1 << 4;
+    /**
+     * 数组的长度
+     */
     private int capacity;
-    //定义一个数组用于保存顺序队列的元素
+    /**
+     * 定义一个数组用于保存顺序队列的元素
+     */
     private T[] elementDate;
-    //保存顺序队列中元素的当前个数
-    private int front = 0;    //前
-    private int rear = 0;    //后
+    /**
+     * 保存顺序队列中元素的当前个数
+     */
+    private int front = 0;
+    private int rear = 0;
 
     /**
      * 以默认数组长度创建空顺序队列
      */
-    public LoopQueue() {
+    private LoopQueue() {
         capacity = DEFAULT_SIZE;
         elementDate = (T[]) new Comparable[capacity];
     }
@@ -31,12 +38,10 @@ public class LoopQueue<T extends Comparable<T>> {
     /**
      * 以一个初始化元素来创建顺序队列
      *
-     * @param t
+     * @param t T
      */
-    public LoopQueue(T t) {
-        this();
-        elementDate[0] = t;
-        rear++;
+    LoopQueue(T t) {
+        this(t, DEFAULT_SIZE);
     }
 
     /**
@@ -45,7 +50,7 @@ public class LoopQueue<T extends Comparable<T>> {
      * @param t        指定顺序队列中第一个元素
      * @param initSize 指定顺序队列底层数组的长度
      */
-    public LoopQueue(T t, int initSize) {
+    private LoopQueue(T t, int initSize) {
         capacity = initSize;
         elementDate = (T[]) new Comparable[capacity];
         elementDate[0] = t;
@@ -55,7 +60,7 @@ public class LoopQueue<T extends Comparable<T>> {
     /**
      * 获取队列大小
      *
-     * @return
+     * @return length
      */
     public int length() {
         if (empty()) {
@@ -68,9 +73,9 @@ public class LoopQueue<T extends Comparable<T>> {
      * 判断是否为空
      * rear==front且rear处的元素为null
      *
-     * @return
+     * @return boolean
      */
-    public boolean empty() {
+    boolean empty() {
         return rear == front && elementDate[rear] == null;
     }
 
@@ -78,9 +83,9 @@ public class LoopQueue<T extends Comparable<T>> {
      * 插入队列
      * 如果rear已经到头，那就转头
      *
-     * @param t
+     * @param t T
      */
-    public void add(T t) {
+    void add(T t) {
         if (rear == front && elementDate[front] != null) {
             throw new IndexOutOfBoundsException("队列已满 - 上溢");
         }
@@ -91,14 +96,14 @@ public class LoopQueue<T extends Comparable<T>> {
     /**
      * 删除队列
      *
-     * @return
+     * @return T
      */
-    public T remove() {
+    T remove() {
         if (empty()) {
             throw new IndexOutOfBoundsException("空队列 - 下溢");
         }
         //保留队列的rear端的元素的值
-        T oldValue = (T) elementDate[front];
+        T oldValue = elementDate[front];
         //释放队列的rear端的元素
         elementDate[front++] = null;
         //如果front已经到头，那就转头
@@ -109,9 +114,9 @@ public class LoopQueue<T extends Comparable<T>> {
     /**
      * 返回队列顶元素，但不删除队列顶元素
      *
-     * @return
+     * @return T
      */
-    public T element() {
+    T element() {
         if (empty()) {
             throw new IndexOutOfBoundsException("空队列");
         }
@@ -121,12 +126,13 @@ public class LoopQueue<T extends Comparable<T>> {
     /**
      * 清空循环队列
      */
-    public void clear() {
+    void clear() {
         Arrays.fill(elementDate, null);
         front = 0;
         rear = 0;
     }
 
+    @Override
     public String toString() {
         if (empty()) {
             return "[]";
@@ -135,38 +141,22 @@ public class LoopQueue<T extends Comparable<T>> {
         if (front < rear) {
             StringBuilder sb = new StringBuilder("[");
             for (int i = front; i < rear; i++) {
-                sb.append(elementDate[i].toString() + ",");
+                sb.append(elementDate[i].toString()).append(",");
             }
             int len = sb.length();
             return sb.delete(len - 1, len).append("]").toString();
         } else {    //如果front >= rear，有效元素为front->capacity之间、0->front之间的
             StringBuilder sb = new StringBuilder("[");
             for (int i = front; i < capacity; i++) {
-                sb.append(elementDate[i].toString() + ",");
+                sb.append(elementDate[i].toString()).append(",");
             }
             for (int i = 0; i < front; i++) {
-                if (Utils.isNotBlank(elementDate[i])) {
-                    sb.append(elementDate[i].toString() + ",");
+                if (elementDate[i] != null && StringUtils.isNotBlank(elementDate[i].toString())) {
+                    sb.append(elementDate[i].toString()).append(",");
                 }
             }
             int len = sb.length();
             return sb.delete(len - 1, len).append("]").toString();
         }
-    }
-
-    public static void main(String[] args) {
-        Integer[] src = Utils.random(10, 100, 10);
-        LoopQueue<Integer> lq = new LoopQueue<>(src[0], src.length);
-        for (int i = 1; i < src.length; i++) {
-            lq.add(src[i]);
-        }
-        System.out.println("插入后的队列：" + lq.toString());
-        System.out.println("队列大小：" + lq.length());
-        System.out.println("返回队列顶元素，但不删除：" + lq.element());
-        System.out.println("返回后的队列：" + lq.toString());
-        System.out.println("返回队列顶元素，删除：" + lq.remove());
-        System.out.println("删除后的队列：" + lq.toString());
-        System.out.println("返回队列顶元素，删除：" + lq.remove());
-        System.out.println("删除后的队列：" + lq.toString());
     }
 }
