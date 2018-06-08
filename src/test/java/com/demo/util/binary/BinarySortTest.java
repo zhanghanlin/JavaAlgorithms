@@ -15,7 +15,7 @@ public class BinarySortTest {
         TreeNode<String> nodeFront = binarySort.getTreeByFM(front, middle);
         TreeNode<String> nodeAfter = binarySort.getTreeByAM(after, middle);
 
-        binarySort.sort(nodeAfter, BinarySort.SortType.FRONT);
+        binarySort.sort(nodeAfter, SortType.FRONT);
         System.out.println("前序-原始:" + front);
         System.out.print("前序-排序:");
         for (TreeNode<String> node : BinarySort.list) {
@@ -23,7 +23,7 @@ public class BinarySortTest {
         }
         System.out.println();
 
-        binarySort.sort(nodeFront, BinarySort.SortType.AFTER);
+        binarySort.sort(nodeFront, SortType.AFTER);
         System.out.println("后序-原始:" + after);
         System.out.print("后序-排序:");
         for (TreeNode<String> node : BinarySort.list) {

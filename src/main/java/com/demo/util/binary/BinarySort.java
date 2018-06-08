@@ -83,18 +83,4 @@ public class BinarySort {
             list.add(node);
         }
     }
-
-    /**
-     * 排序枚举
-     */
-    public enum SortType {
-        /**
-         * 前序
-         */
-        FRONT,
-        /**
-         * 后序
-         */
-        AFTER
-    }
 }
