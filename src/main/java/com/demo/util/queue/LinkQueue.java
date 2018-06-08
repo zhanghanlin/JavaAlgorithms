@@ -29,11 +29,17 @@ public class LinkQueue<T extends Comparable<T>> {
         }
     }
 
-    //保存该链队列的头节点
+    /**
+     * 保存该链队列的头节点
+     */
     private Node front;
-    //保存该链队列的尾节点
+    /**
+     * 保存该链队列的尾节点
+     */
     private Node rear;
-    //保存该链队列中已包含的节点数
+    /**
+     * 保存该链队列中已包含的节点数
+     */
     private int size;
 
     /**
@@ -126,6 +132,7 @@ public class LinkQueue<T extends Comparable<T>> {
         size = 0;
     }
 
+    @Override
     public String toString() {
         if (empty()) {
             return "[]";

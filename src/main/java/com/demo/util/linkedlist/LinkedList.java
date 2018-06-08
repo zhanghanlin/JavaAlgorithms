@@ -2,11 +2,9 @@ package com.demo.util.linkedlist;
 
 import com.demo.util.Utils;
 
-
 /**
  * 双向链表 - 非循环
  *
- * @param <T>
  * @author zhanghanlin
  */
 public class LinkedList<T extends Comparable<T>> {
@@ -31,6 +29,7 @@ public class LinkedList<T extends Comparable<T>> {
             this.next = next;
         }
 
+        @Override
         public String toString() {
             Node p = prev;
             Node n = next;
@@ -65,7 +64,7 @@ public class LinkedList<T extends Comparable<T>> {
     /**
      * 链表元素个数
      *
-     * @return
+     * @return int
      */
     public int length() {
         return size;
@@ -74,7 +73,7 @@ public class LinkedList<T extends Comparable<T>> {
     /**
      * 判断链表是否为空
      *
-     * @return
+     * @return boolean
      */
     public boolean isEmpty() {
         return size == 0;
@@ -90,7 +89,7 @@ public class LinkedList<T extends Comparable<T>> {
      * --L.head = x
      * --x.prev = NIL
      *
-     * @param t
+     * @param t T
      */
     public void insertByHead(T t) {
         if (isEmpty()) {
@@ -107,7 +106,7 @@ public class LinkedList<T extends Comparable<T>> {
     /**
      * 插入 by tail
      *
-     * @param t
+     * @param t T
      */
     public void insertByTail(T t) {
         if (isEmpty()) {
@@ -130,8 +129,8 @@ public class LinkedList<T extends Comparable<T>> {
      * ----x = x.next
      * --return x
      *
-     * @param t
-     * @return
+     * @param t T
+     * @return Node
      */
     public Node search(T t) {
         Node n = null;
@@ -139,7 +138,9 @@ public class LinkedList<T extends Comparable<T>> {
             System.out.println("Null Error");
         } else {
             n = head;
-            while (n != null && n.key != t) n = n.next;
+            while (n != null && n.key != t) {
+                n = n.next;
+            }
         }
         return n;
     }
@@ -154,7 +155,7 @@ public class LinkedList<T extends Comparable<T>> {
      * --if x.next ≠ NIL
      * ----x.next.prev = x.prev
      *
-     * @param n
+     * @param n Node
      */
     public void delete(Node n) {
         if (isEmpty()) {
@@ -182,6 +183,7 @@ public class LinkedList<T extends Comparable<T>> {
         size = 0;
     }
 
+    @Override
     public String toString() {
         if (isEmpty()) {
             return "[]";

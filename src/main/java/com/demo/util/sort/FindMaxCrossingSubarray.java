@@ -107,9 +107,18 @@ public class FindMaxCrossingSubarray {
     }
 
     static class SubArray {
-        int low;    //开始坐标
-        int high;    //结束坐标
-        int sum;    //src[low]+src[low+1]... + src[high]
+        /**
+         * 开始坐标
+         */
+        int low;
+        /**
+         * 结束坐标
+         */
+        int high;
+        /**
+         * src[low]+src[low+1]... + src[high]
+         */
+        int sum;
 
         public SubArray(int low, int high, int sum) {
             this.low = low;
@@ -117,6 +126,7 @@ public class FindMaxCrossingSubarray {
             this.sum = sum;
         }
 
+        @Override
         public String toString() {
             return "最小下标：" + low + "，最大下标：" + high + "，总和：" + sum;
         }

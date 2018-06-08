@@ -28,12 +28,13 @@ public class CountingSort {
      * ----B[C[A[j]]] = A[j]
      * ----C[A[j]] = C[A[j]] - 1
      *
-     * @param a
-     * @param b
-     * @param k
+     * @param a a
+     * @param b b
+     * @param k k
      */
     public static void exampleSort(Integer[] a, Integer[] b, int k) {
-        Integer[] c = new Integer[k];    //let C[0..k] be a new array
+        //let C[0..k] be a new array
+        Integer[] c = new Integer[k];
         //for i = 0 to k
         Arrays.fill(c, 0);
         for (int j = 0; j < a.length; j++) {
@@ -51,8 +52,8 @@ public class CountingSort {
     /**
      * 优化排序
      *
-     * @param t
-     * @return
+     * @param t Integer[]
+     * @return Integer[] t
      */
     public static Integer[] sort(Integer[] t) {
         int maxValue = findMax(t);
@@ -65,8 +66,8 @@ public class CountingSort {
     /**
      * 根据Counts,将对于的Val放入t
      *
-     * @param t
-     * @param counts
+     * @param t      Integer[]
+     * @param counts int[]
      */
     private static void populateCounts(Integer[] t, int[] counts) {
         int index = 0;
@@ -89,8 +90,8 @@ public class CountingSort {
     /**
      * 更新Counts数组的Val
      *
-     * @param t
-     * @param counts
+     * @param t      Integer[]
+     * @param counts int[]
      */
     private static void updateCounts(Integer[] t, int[] counts) {
         for (int i : t) {
@@ -101,14 +102,15 @@ public class CountingSort {
     /**
      * 得到t中最大的Val
      *
-     * @param t
-     * @return
+     * @param t Integer[]
+     * @return Integer
      */
     private static int findMax(Integer[] t) {
         int max = Integer.MIN_VALUE;
         for (int i : t) {
-            if (i > max)
+            if (i > max) {
                 max = i;
+            }
         }
         return max;
     }

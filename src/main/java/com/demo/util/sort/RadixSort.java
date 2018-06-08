@@ -27,10 +27,14 @@ public class RadixSort {
      */
     public static void exampleSort(Integer[] t) {
         int length = t.length;
-        Integer[] temp = new Integer[length];    //用于暂存元素
-        Integer[] count = new Integer[length];    //用于计数排序
-        int numberOfDigits = findManxNumber(t);    //最大位数
-        int divide = 1;    //初始化倍数基数为1
+        //用于暂存元素
+        Integer[] temp = new Integer[length];
+        //用于计数排序
+        Integer[] count = new Integer[length];
+        //最大位数
+        int numberOfDigits = findManxNumber(t);
+        //初始化倍数基数为1
+        int divide = 1;
         for (int i = 0; i < numberOfDigits; i++) {
             System.arraycopy(t, 0, temp, 0, length);
             Arrays.fill(count, 0);
@@ -48,17 +52,24 @@ public class RadixSort {
         }
     }
 
-    private static final int NUMBER_OF_BUCKETS = 10; // 10 for base 10 numbers
+    /**
+     * 10 for base 10 numbers
+     */
+    private static final int NUMBER_OF_BUCKETS = 10;
 
     public static Integer[] sort(Integer[] t) {
         int[][] buckets = new int[NUMBER_OF_BUCKETS][10];
         for (int i = 0; i < buckets.length; i++) {
-            buckets[i][0] = 1;    //每个子数组第一位记录该数组内的元素个数+1
+            //每个子数组第一位记录该数组内的元素个数+1
+            buckets[i][0] = 1;
         }
-        int numberOfDigits = findManxNumber(t);    //最大位数
-        int divisor = 1;    //除数
+        //最大位数
+        int numberOfDigits = findManxNumber(t);
+        //除数
+        int divisor = 1;
         for (int i = 0; i < numberOfDigits; i++) {
-            int digit = 0;    //第i位divisor的余数
+            //第i位divisor的余数
+            int digit = 0;
             //根据余数将元素放入对应的数组中
             for (int j : t) {
                 digit = getDigit(j, divisor);
@@ -86,7 +97,8 @@ public class RadixSort {
      * @return
      */
     private static int[] add(int integer, int[] bucket) {
-        int size = bucket[0]; // size is stored in first element
+        // size is stored in first element
+        int size = bucket[0];
         int length = bucket.length;
         if (size >= length) {
             bucket = Arrays.copyOf(bucket, ((length * 3) / 2) + 1);

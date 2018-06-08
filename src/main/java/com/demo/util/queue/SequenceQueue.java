@@ -12,14 +12,20 @@ import java.util.Arrays;
  */
 public class SequenceQueue<T extends Comparable<T>> {
 
-    private int DEFAULT_SIZE = 10;
-    //数组的长度
+    private static final int DEFAULT_SIZE = 1 << 4;
+    /**
+     * 数组的长度
+     */
     private int capacity;
-    //定义一个数组用于保存顺序队列的元素
+    /**
+     * 定义一个数组用于保存顺序队列的元素
+     */
     private T[] elementDate;
-    //保存顺序队列中元素的当前个数
-    private int front = 0;    //前
-    private int rear = 0;    //后
+    /**
+     * 保存顺序队列中元素的当前个数
+     */
+    private int front = 0;
+    private int rear = 0;
 
     /**
      * 以默认数组长度创建空顺序队列
@@ -120,6 +126,7 @@ public class SequenceQueue<T extends Comparable<T>> {
         rear = 0;
     }
 
+    @Override
     public String toString() {
         if (empty()) {
             return "[]";

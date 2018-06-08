@@ -56,11 +56,14 @@ public class QuickSort<T extends Comparable<T>> {
      * @return
      */
     public static <T extends Comparable<T>> int partition(T[] t, int p, int r) {
-        T x = t[r];    //主元,围绕该Val进行划分字数组
-        int i = p;    //排序开始比较的位置
+        //主元,围绕该Val进行划分字数组
+        T x = t[r];
+        //排序开始比较的位置
+        int i = p;
         for (int j = p; j < r; j++) {
             if (t[j].compareTo(x) <= 0) {
-                Utils.swap(t, i, j);    //交换
+                //交换
+                Utils.swap(t, i, j);
                 i++;
             }
         }
@@ -79,8 +82,9 @@ public class QuickSort<T extends Comparable<T>> {
      * ----RANDOMIZED-QUICKSORT(A, p, q - 1)
      * ----RANDOMIZED-QUICKSORT(A, q + 1, r)
      *
-     * @param p
-     * @param r
+     * @param t T[]
+     * @param p int
+     * @param r int
      */
     public static <T extends Comparable<T>> T[] randomSort(T[] t, int p, int r) {
         if (p < r) {
@@ -138,7 +142,18 @@ public class QuickSort<T extends Comparable<T>> {
      * 快速排序优化版本
      *******************************/
     private enum PIVOT_TYPE {
-        FIRST, MIDDLE, RANDOM;
+        /**
+         * 待补充
+         */
+        FIRST,
+        /**
+         * 二分排序
+         */
+        MIDDLE,
+        /**
+         * 随机排序
+         */
+        RANDOM
     }
 
     private static Random RANDOM = new Random();
@@ -166,8 +181,10 @@ public class QuickSort<T extends Comparable<T>> {
      * @param t          数组
      */
     private static <T extends Comparable<T>> void sort(int pivotIndex, int start, int finish, T[] t) {
-        pivotIndex += start;    //主元索引
-        T pivot = t[pivotIndex];    //主元
+        //主元索引
+        pivotIndex += start;
+        //主元
+        T pivot = t[pivotIndex];
         int s = start;
         int f = finish;
         while (s <= f) {
@@ -215,27 +232,31 @@ public class QuickSort<T extends Comparable<T>> {
         System.out.println("普通版本：");
         Utils.print(src, "排序前");
         //起始索引,默认第一个0 最末索引,数组长度减一
-        exampleSort(src, 0, src.length - 1);    //开始排序
+        //开始排序
+        exampleSort(src, 0, src.length - 1);
         Utils.print(src, "排序后");
         Arrays.fill(src, null);
 
         System.out.println("随机化版本：");
         src = Utils.random(13, 77, 10);
         Utils.print(src, "排序前");
-        randomSort(src, 0, src.length - 1);    //开始排序
+        //开始排序
+        randomSort(src, 0, src.length - 1);
         Utils.print(src, "排序后");
         Arrays.fill(src, null);
 
         System.out.println("尾递归实现：");
         src = Utils.random(23, 96, 10);
         Utils.print(src, "排序前");
-        tailRecursiveSort(src, 0, src.length - 1);    //开始排序
+        //开始排序
+        tailRecursiveSort(src, 0, src.length - 1);
         Utils.print(src, "排序后");
 
         System.out.println("优化排序：");
         src = Utils.random(23, 96, 10);
         Utils.print(src, "排序前");
-        sort(PIVOT_TYPE.RANDOM, src);    //开始排序
+        //开始排序
+        sort(PIVOT_TYPE.RANDOM, src);
         Utils.print(src, "排序后");
     }
 }

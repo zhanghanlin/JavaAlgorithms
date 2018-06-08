@@ -8,8 +8,8 @@ package com.demo.util.squarematrix;
 public class SquareMatrix {
 
     public static void main(String[] args) {
-        int a[][] = new int[5][5];
-        int b[][] = new int[5][5];
+        int[][] a = new int[5][5];
+        int[][] b = new int[5][5];
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 a[i][j] = i * j;
@@ -68,7 +68,7 @@ public class SquareMatrix {
      */
     public static int[][] squareMatrixMultiplyRecursive(int[][] a, int[][] b) {
         int n = a.length;
-        int c[][] = new int[n][n];
+        int[][] c = new int[n][n];
         if (n == 1) {
             c[n][n] = a[n][n] * b[n][n];
         } else {

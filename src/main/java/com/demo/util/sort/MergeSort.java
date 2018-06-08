@@ -30,8 +30,10 @@ public class MergeSort<T extends Comparable<T>> {
     public static <T extends Comparable<T>> T[] exampleSort(T[] t, int start, int length) {
         if (start < length) {
             int m = (start + length) / 2;
-            exampleSort(t, start, m);    //对L排序
-            exampleSort(t, m + 1, length);    //对R排序
+            //对L排序
+            exampleSort(t, start, m);
+            //对R排序
+            exampleSort(t, m + 1, length);
 //			exampleMergeA(t, start, m, length);
             exampleMergeB(t, start, m, length);
         }
@@ -116,11 +118,16 @@ public class MergeSort<T extends Comparable<T>> {
                 temp[k++] = t[j++];
             }
         }
-        while (i <= rightStart) temp[k++] = t[i++];
-        while (j <= lastIndex) temp[k++] = t[j++];
-        for (int x = 0; x < k; x++) t[leftStart + x] = temp[x];
+        while (i <= rightStart) {
+            temp[k++] = t[i++];
+        }
+        while (j <= lastIndex) {
+            temp[k++] = t[j++];
+        }
+        for (int x = 0; x < k; x++) {
+            t[leftStart + x] = temp[x];
+        }
     }
-
 
     public static <T extends Comparable<T>> T[] sort(T[] t) {
         sort(t, 0, t.length);
@@ -134,7 +141,7 @@ public class MergeSort<T extends Comparable<T>> {
      * @param t      数组
      * @param start  开始索引
      * @param length 数组长度
-     * @return
+     * @return T[]
      */
     private static <T extends Comparable<T>> T[] sort(T[] t, int start, int length) {
         if (length > 2) {
@@ -156,12 +163,11 @@ public class MergeSort<T extends Comparable<T>> {
     /**
      * 归并
      *
-     * @param <T>
      * @param t       数组
-     * @param aStart
-     * @param aLength
-     * @param bStart
-     * @param bLength
+     * @param aStart  aStart
+     * @param aLength aLength
+     * @param bStart  bStart
+     * @param bLength bLength
      */
     private static <T extends Comparable<T>> void marge(T[] t, int aStart, int aLength, int bStart, int bLength) {
         int count = 0;

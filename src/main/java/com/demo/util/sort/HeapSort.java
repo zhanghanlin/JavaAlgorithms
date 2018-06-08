@@ -5,7 +5,6 @@ import com.demo.util.Utils;
 /**
  * 堆排序
  *
- * @param <T>
  * @author zhanghanlin
  */
 public class HeapSort<T extends Comparable<T>> {
@@ -16,9 +15,8 @@ public class HeapSort<T extends Comparable<T>> {
     /**
      * 堆排序
      *
-     * @param <T>
-     * @param t
-     * @return
+     * @param t T[]
+     * @return T[]
      */
     public static <T extends Comparable<T>> T[] sort(T[] t) {
         createHeap(t);
@@ -34,7 +32,9 @@ public class HeapSort<T extends Comparable<T>> {
             while (true) {
                 int left = Utils.left(i);
                 int right = Utils.right(i);
-                if (left >= index) break;
+                if (left >= index) {
+                    break;
+                }
                 if (right >= index) {
                     if (t[left].compareTo(t[index]) > 0) {
                         Utils.swap(t, left, i);
@@ -67,8 +67,7 @@ public class HeapSort<T extends Comparable<T>> {
     /**
      * 创建堆
      *
-     * @param <T>
-     * @param t
+     * @param t T[]
      */
     private static <T extends Comparable<T>> void createHeap(T[] t) {
         int size = 0;
@@ -80,11 +79,10 @@ public class HeapSort<T extends Comparable<T>> {
     /**
      * 将元素添加到堆中
      *
-     * @param <T>
-     * @param element
-     * @param size
-     * @param t
-     * @return
+     * @param element T
+     * @param size    int
+     * @param t       T[]
+     * @return int
      */
     private static <T extends Comparable<T>> int add(T element, int size, T[] t) {
         int i = size;

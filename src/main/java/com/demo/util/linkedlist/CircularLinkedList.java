@@ -6,7 +6,6 @@ import com.demo.util.Utils;
 /**
  * 双向链表 - 循环
  *
- * @param <T>
  * @author zhanghanlin
  */
 public class CircularLinkedList<T extends Comparable<T>> {
@@ -31,6 +30,7 @@ public class CircularLinkedList<T extends Comparable<T>> {
             this.next = next;
         }
 
+        @Override
         public String toString() {
             Node p = prev;
             Node n = next;
@@ -81,11 +81,13 @@ public class CircularLinkedList<T extends Comparable<T>> {
      * --L.nil.next = x
      * --x.prev = L.nil
      *
-     * @param t
+     * @param t T
      */
     public void insertByHead(T t) {
         Node node = new Node(null, t, nil.next);
-        if (nil.key == null) nil = node;
+        if (nil.key == null) {
+            nil = node;
+        }
         nil.next.prev = node;
         nil.next = node;
         node.prev = nil;
@@ -95,11 +97,13 @@ public class CircularLinkedList<T extends Comparable<T>> {
     /**
      * 插入 by tail
      *
-     * @param t
+     * @param t T
      */
     public void insertByTail(T t) {
         Node node = new Node(nil.prev, t, null);
-        if (nil.key == null) nil = node;
+        if (nil.key == null) {
+            nil = node;
+        }
         nil.prev.next = node;
         nil.prev = node;
         node.next = nil;
@@ -115,12 +119,14 @@ public class CircularLinkedList<T extends Comparable<T>> {
      * ----x = x.next
      * --return x
      *
-     * @param t
-     * @return
+     * @param t T
+     * @return Node
      */
     public Node search(T t) {
         Node n = nil.next;
-        while (n != nil && n.key != t) n = n.next;
+        while (n != nil && n.key != t) {
+            n = n.next;
+        }
         return n;
     }
 
@@ -131,13 +137,14 @@ public class CircularLinkedList<T extends Comparable<T>> {
      * --x.prev.next = x.next
      * --x.next.prev = x.prev
      *
-     * @param n
+     * @param n Node
      */
     public void delete(Node n) {
         n.prev.next = n.next;
         n.next.prev = n.prev;
     }
 
+    @Override
     public String toString() {
         if (isEmpty()) {
             return "[]";

@@ -50,7 +50,7 @@ public class ArrayStack<T extends Comparable<T>> implements IStack<T> {
     /**
      * 创建指定大小的栈
      *
-     * @param capacity
+     * @param capacity capacity
      */
     public ArrayStack(int capacity) {
         this.capacity = capacity;
@@ -115,15 +115,13 @@ public class ArrayStack<T extends Comparable<T>> implements IStack<T> {
     /**
      * 栈内的元素个数
      *
-     * @return
+     * @return int
      */
     public int size() {
         return size;
     }
 
-    /**
-     * Override toString()
-     */
+    @Override
     public String toString() {
         String o = "[";
         if (!empty()) {
