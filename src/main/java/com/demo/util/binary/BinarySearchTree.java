@@ -29,17 +29,6 @@ public class BinarySearchTree {
     }
 
     /**
-     * 对于某些二叉查找树操作(比如删除关键字)来说，若树为空，则抛出异常。
-     *
-     * @throws Exception Tree Is Null
-     */
-    public void treeEmpty() throws Exception {
-        if (isEmpty()) {
-            throw new Exception("Tree Is Null");
-        }
-    }
-
-    /**
      * 查询
      *
      * @param t Object
