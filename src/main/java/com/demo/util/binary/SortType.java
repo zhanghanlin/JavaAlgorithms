@@ -2,6 +2,8 @@ package com.demo.util.binary;
 
 /**
  * 排序规则
+ *
+ * @author zhanghanlin6
  */
 public enum SortType {
     /**
