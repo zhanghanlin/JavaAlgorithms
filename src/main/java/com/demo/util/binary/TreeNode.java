@@ -3,22 +3,47 @@ package com.demo.util.binary;
 import com.alibaba.fastjson.JSONObject;
 
 /**
+ * TreeNode
  * 二叉树节点
  *
  * @author zhanghanlin6
+ * @date 2016-08-24
  */
 public class TreeNode<T> {
-
+    /**
+     * 节点数据
+     */
     private T object;
+    /**
+     * 左节点
+     */
     private TreeNode<T> leftNode;
+    /**
+     * 右节点
+     */
     private TreeNode<T> rightNode;
+    /**
+     * 父节点
+     */
     private TreeNode<T> parentNode;
 
-
+    /**
+     * 构造函数
+     *
+     * @param object 节点数据
+     */
     TreeNode(T object) {
         this(object, null, null, null);
     }
 
+    /**
+     * 构造函数
+     *
+     * @param object     节点数据
+     * @param leftNode   左节点
+     * @param rightNode  右节点
+     * @param parentNode 父节点
+     */
     private TreeNode(T object, TreeNode<T> leftNode, TreeNode<T> rightNode, TreeNode<T> parentNode) {
         this.object = object;
         this.leftNode = leftNode;

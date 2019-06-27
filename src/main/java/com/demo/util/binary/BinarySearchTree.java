@@ -6,6 +6,7 @@ import java.util.Arrays;
  * 二叉查找树
  *
  * @author zhanghanlin
+ * @date 2016-08-24
  */
 class BinarySearchTree {
 
@@ -14,9 +15,17 @@ class BinarySearchTree {
      */
     private TreeNode<Integer> root = null;
 
+    /**
+     * 默认构造函数
+     */
     BinarySearchTree() {
     }
 
+    /**
+     * 构造函数
+     *
+     * @param root 二叉树节点
+     */
     private BinarySearchTree(TreeNode<Integer> root) {
         this.root = root;
     }
@@ -51,7 +60,7 @@ class BinarySearchTree {
             } else if (object.compareTo(rootNode.getObject()) > 0) {
                 rootNode = rootNode.getRightNode();
             } else {
-                throw new Exception(object + " is exist");
+                throw new Exception(String.format("%s is exist", object));
             }
         }
         newNode.setParentNode(parentNode);
