@@ -9,7 +9,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.fastjson>1.2.70</version.fastjson>
+        <version.fastjson>1.2.83</version.fastjson>
         <version.commons-lang3>3.9</version.commons-lang3>
     </properties>
 
